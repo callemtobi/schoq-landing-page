@@ -5,15 +5,15 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full bg-white border-b border-gray-200 px-6 py-4 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className="w-auto mx-auto mt-4 shadow rounded bg-[#FFFFFF66] border-b border-gray-200 px-6 py-3 md:px-12 lg:px-10">
+      <div className="max-w-7xl mx-auto flex gap-10 items-center justify-between">
         {/* Logo */}
-        <div className="text-3xl font-bold tracking-tight text-gray-900">
+        <div className="text-3xl font-extrabold tracking-tight bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] bg-clip-text text-transparent">
           SCHOQ
         </div>
 
         {/* Navigation Links - Desktop */}
-        <nav className="hidden lg:flex items-center space-x-10 text-base font-medium text-gray-700">
+        <nav className="hidden lg:flex items-center space-x-5 text-base font-medium text-gray-500">
           <Link href="#" className="hover:text-gray-900 transition-colors">
             Services
           </Link>
@@ -27,11 +27,12 @@ const Header: React.FC = () => {
             Contact
           </Link>
         </nav>
+        <span className="text-gray-300">|</span>
 
         {/* Right Section */}
         <div className="flex items-center space-x-5">
           {/* Language Toggle */}
-          <div className="hidden sm:flex items-center space-x-1 text-sm font-medium text-gray-600">
+          <div className="hidden sm:flex items-center space-x-1 text-sm font-medium text-gray-600 shadow-[inset_0_1px_8px_rgba(0,0,0,0.15)] px-3  py-1 rounded">
             <button className="hover:text-gray-900 transition-colors">
               DE
             </button>
@@ -44,7 +45,7 @@ const Header: React.FC = () => {
           {/* Start a Project Button */}
           <Link
             href="#"
-            className="hidden md:inline-block bg-gray-900 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors"
+            className="hidden md:inline-block bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] text-white text-sm px-10 py-3 rounded font-bold hover:bg-gray-800 transition-colors"
           >
             Start a Project
           </Link>
