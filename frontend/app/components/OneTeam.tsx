@@ -1,18 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Code2,
-  Brain,
-  Globe,
-  Smartphone,
-  Palette,
-  Cloud,
-  Server,
-} from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { image1, image2, image3, image4, image5, image6 } from "@/assets";
 
+// Register ScrollTrigger safely
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 const OneTeam: React.FC = () => {
+  const container = useRef<HTMLDivElement>(null);
+
   const services = [
     {
       image: image1,
@@ -45,7 +48,7 @@ const OneTeam: React.FC = () => {
         "Tailored enterprise software solutions and custom system development for unique business requirements.",
     },
     {
-      image: image1,
+      image: image6,
       title: "SaaS Development",
       description:
         "Build and scale secure, multi-tenant software-as-a-service platforms globally.",
@@ -57,77 +60,194 @@ const OneTeam: React.FC = () => {
         "Tailored enterprise software solutions and custom system development for unique business requirements.",
     },
   ];
+
   const firstRow = services.slice(0, 4);
   const secondRow = services.slice(4);
 
+  useGSAP(
+    () => {
+      // ---- Header & Button ----
+      const headerTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".header-trigger",
+          start: "top 80%",
+          end: "bottom 80%",
+          scrub: 1, // numeric scrub = slight catch-up lag, feels less mechanical than scrub: true
+        },
+      });
+
+      headerTimeline
+        .from(".reveal-text", {
+          y: "100%",
+          duration: 1.1,
+          ease: "power4.out",
+        })
+        .from(
+          ".reveal-btn",
+          {
+            y: "110%",
+            duration: 0.5,
+            ease: "power3.out",
+          },
+          "-=0.8",
+        );
+
+      // ---- Service Cards - Unified Master Timeline ----
+      const servicesTL = gsap.timeline({
+        scrollTrigger: {
+          // Trigger off a stable, non-animated element instead of ".reveal-btn"
+          // (which is itself being translated by headerTimeline above).
+          trigger: ".services-section", // give the section wrapper this class
+          start: "top 100%",
+          end: "bottom top",
+          // markers: true, // dev only — leave off unless actively tuning
+          scrub: 1, // no toggleActions with scrub — scrub already owns play direction
+        },
+        defaults: {
+          duration: 1.2,
+          ease: "power3.out", // monotonic — no overshoot, no mid-scroll "bounce back"
+        },
+      });
+
+      gsap.set([".row1-left", ".row1-right"], { transformPerspective: 1000 });
+
+      // 1) First row – left card, eased in from the left (symmetric distance with right)
+      servicesTL.from(
+        ".row1-left",
+        {
+          x: -180,
+          opacity: 0,
+          scale: 0.94,
+          rotationY: 6,
+          // no clearProps — let GSAP keep controlling this for the whole scrub range
+        },
+        0,
+      );
+
+      // 2) First row – right card, mirrors the left card's distance/scale/rotation
+      servicesTL.from(
+        ".row1-right",
+        {
+          x: 180,
+          opacity: 0,
+          scale: 0.94,
+          rotationY: -6,
+        },
+        0,
+      );
+
+      // 3) First row – middle cards rise together, starting a beat after the
+      // outer cards so the eye has a clear left/right → center order instead
+      // of everything landing in perfect unison (reads as orchestrated, not robotic)
+      servicesTL.from(
+        ".row1-mid",
+        {
+          y: 80,
+          opacity: 0,
+          scale: 0.96,
+          stagger: 0.08,
+        },
+        0.1,
+      );
+
+      // 4) Second row – follows shortly after row 1 settles
+      servicesTL.from(
+        ".row2-item",
+        {
+          y: 80,
+          opacity: 0,
+          scale: 0.96,
+          stagger: 0.08,
+        },
+        0.2,
+      );
+    },
+    { scope: container },
+  );
+
   return (
-    <section className="w-full bg-gray-50 px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8 md:mb-12 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
-            ONE TEAM. COMPLETE
-            <br />
-            PRODUCT EXPERTISE.
-          </h2>
+    <section
+      ref={container}
+      className="w-full bg-gray-50 px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto header-trigger">
+        {/* Header with wrapper mask */}
+        <div className="mb-8 md:mb-12 text-center overflow-hidden py-1">
+          <div className="reveal-text">
+            <h2 className="oneTeam-header text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
+              ONE TEAM. COMPLETE
+              <br />
+              PRODUCT EXPERTISE.
+            </h2>
+          </div>
         </div>
 
         {/* Description and CTA */}
-        <div className="grid grid-cols-1 mx-auto text-center w-1/2 justify-items-center lg:grid-cols-1 gap-6 md:gap-8 lg:gap-12 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 mx-auto text-center w-11/12 md:w-2/3 lg:w-1/2 justify-items-center gap-6 md:gap-8 mb-12 md:mb-16">
           <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
             From product strategy and UX to web, mobile, AI and cloud, Schoq
             brings the expertise required to design, build and scale digital
             products.
           </p>
-          {/* <div className="flex items-start lg:justify-end"></div> */}
-          <Link
-            href="#"
-            className="inline-block bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] text-white text-base sm:text-lg font-medium px-8 py-3.5 rounded hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
-          >
-            Start a Project
-          </Link>
+
+          {/* Button wrapped in an overflow-hidden mask */}
+          <div className="overflow-hidden py-2 px-4">
+            <div className="reveal-btn">
+              <Link
+                href="#"
+                className="inline-block bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] text-white text-base sm:text-lg font-medium px-8 py-3.5 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+              >
+                Start a Project
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className="space-y-8">
-          {/* First Row */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {firstRow.map((service, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
-              >
-                <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
-                  {/* <Icon className="w-6 h-6 text-gray-900" strokeWidth={1.5} /> */}
-                  <Image
-                    alt="Icons"
-                    src={service.image}
-                    width={100}
-                    height={100}
-                  />
+          {/* First Row Container */}
+          <div className="service-wrapper1 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {firstRow.map((service, index) => {
+              // Properly assign animation targets
+              let animClass = "row1-mid";
+              if (index === 0) animClass = "row1-left";
+              if (index === 3) animClass = "row1-right";
+
+              return (
+                <div
+                  key={index}
+                  className={`${animClass} group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg`}
+                >
+                  <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
+                    <Image
+                      alt={service.title}
+                      src={service.image}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-
-                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
-                  {service.title}
-                </h3>
-
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Second Row */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* Second Row Container */}
+          <div className="service-wrapper2 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {secondRow.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
+                className="row2-item group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
               >
                 <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
-                  {/* <Icon className="w-6 h-6 text-gray-900" strokeWidth={1.5} /> */}
                   <Image
-                    alt="Icons"
+                    alt={service.title}
                     src={service.image}
                     width={100}
                     height={100}
@@ -145,7 +265,6 @@ const OneTeam: React.FC = () => {
             ))}
           </div>
         </div>
-        {/* Services Grid */}
       </div>
     </section>
   );

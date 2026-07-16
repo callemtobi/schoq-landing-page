@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,6 +21,9 @@ const Header: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  // Keep a persistent reference to the mobile menu timeline
+  const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
+
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -29,10 +33,10 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Initial entrance animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Logo animation
+  // Entrance and scroll effects
+  useGSAP(
+    () => {
+      // Logo entrance
       gsap.from(logoRef.current, {
         opacity: 0,
         x: -30,
@@ -41,7 +45,7 @@ const Header: React.FC = () => {
         delay: 0.1,
       });
 
-      // Navigation links animation
+      // Desktop nav links
       gsap.from(navRef.current?.children || [], {
         opacity: 0,
         y: -20,
@@ -51,7 +55,7 @@ const Header: React.FC = () => {
         delay: 0.2,
       });
 
-      // Language toggle animation
+      // Language switcher
       gsap.from(languageRef.current, {
         opacity: 0,
         y: -20,
@@ -60,7 +64,7 @@ const Header: React.FC = () => {
         delay: 0.4,
       });
 
-      // CTA button animation
+      // CTA
       gsap.from(ctaRef.current, {
         opacity: 0,
         y: -20,
@@ -68,216 +72,104 @@ const Header: React.FC = () => {
         ease: "power3.out",
         delay: 0.5,
       });
+    },
+    { scope: headerRef },
+  );
 
-      // Header scroll effect
-      if (scrolled) {
-        gsap.to(headerRef.current, {
-          backgroundColor: "rgba(255,255,255,0.95)",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
-          backdropFilter: "blur(12px)",
-          borderColor: "rgba(229,231,235,0.3)",
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      } else {
-        gsap.to(headerRef.current, {
-          backgroundColor: "rgba(255,255,255,0.4)",
-          boxShadow: "none",
-          backdropFilter: "blur(0px)",
-          borderColor: "rgba(229,231,235,1)",
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      }
-    }, headerRef);
-
-    return () => ctx.revert();
+  // Handle header changes on scroll
+  useGSAP(() => {
+    if (scrolled) {
+      gsap.to(headerRef.current, {
+        backgroundColor: "rgba(255,255,255,0.95)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
+        backdropFilter: "blur(12px)",
+        borderColor: "rgba(229,231,235,0.3)",
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(headerRef.current, {
+        backgroundColor: "rgba(255,255,255,0.4)",
+        boxShadow: "none",
+        backdropFilter: "blur(0px)",
+        borderColor: "rgba(229,231,235,1)",
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }
   }, [scrolled]);
 
-  // Close dropdowns when clicking outside
+  // Prevent background scroll
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsServicesOpen(false);
-        setIsProjectsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
-  // Mobile menu animations
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Show overlay
-      gsap.to(overlayRef.current, {
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        display: "block",
-      });
-
-      // Slide in menu
-      gsap.fromTo(
-        mobileMenuRef.current,
-        {
-          x: "100%",
-          opacity: 0,
-        },
-        {
-          x: "0%",
-          opacity: 1,
-          duration: 0.5,
-          ease: "power3.out",
-        },
-      );
-
-      // Animate mobile links with stagger
+  // Create a clean, single timeline for the mobile drawer
+  useGSAP(
+    () => {
       const mobileLinks =
         mobileMenuRef.current?.querySelectorAll(".mobile-link");
-      if (mobileLinks) {
-        gsap.fromTo(
+
+      // Initialize the master timeline paused
+      const tl = gsap.timeline({ paused: true });
+
+      tl.set(overlayRef.current, { display: "block" })
+        .to(overlayRef.current, {
+          opacity: 1,
+          duration: 0.25,
+          ease: "power2.out",
+        })
+        .fromTo(
+          mobileMenuRef.current,
+          { x: "100%", opacity: 0 },
+          { x: "0%", opacity: 1, duration: 0.4, ease: "power3.out" },
+          "-=0.15", // overlapping track
+        );
+
+      if (mobileLinks && mobileLinks.length > 0) {
+        tl.fromTo(
           mobileLinks,
-          {
-            opacity: 0,
-            x: 30,
-          },
+          { opacity: 0, x: 20 },
           {
             opacity: 1,
             x: 0,
-            stagger: 0.06,
-            duration: 0.4,
-            ease: "power3.out",
-            delay: 0.2,
+            stagger: 0.05,
+            duration: 0.3,
+            ease: "power2.out",
           },
+          "-=0.2",
         );
       }
-    } else {
-      // Hide overlay
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.in",
-        display: "none",
-      });
 
-      // Slide out menu
-      gsap.to(mobileMenuRef.current, {
-        x: "100%",
-        opacity: 0,
-        duration: 0.4,
-        ease: "power3.in",
-      });
+      menuTimelineRef.current = tl;
+
+      return () => {
+        tl.kill();
+      };
+    },
+    { scope: headerRef },
+  );
+
+  // Control mobile drawer animation cleanly based on state
+  useEffect(() => {
+    if (menuTimelineRef.current) {
+      if (isMobileMenuOpen) {
+        menuTimelineRef.current.play();
+      } else {
+        menuTimelineRef.current.reverse();
+      }
     }
   }, [isMobileMenuOpen]);
 
-  // Dropdown animations
-  useEffect(() => {
-    const dropdowns = document.querySelectorAll(".dropdown-menu");
-    dropdowns.forEach((dropdown) => {
-      if (dropdown.classList.contains("services-dropdown")) {
-        if (isServicesOpen) {
-          gsap.to(dropdown, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out",
-            display: "block",
-          });
-        } else {
-          gsap.to(dropdown, {
-            opacity: 0,
-            y: -10,
-            scale: 0.95,
-            duration: 0.2,
-            ease: "power2.in",
-            display: "none",
-          });
-        }
-      }
-      if (dropdown.classList.contains("projects-dropdown")) {
-        if (isProjectsOpen) {
-          gsap.to(dropdown, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out",
-            display: "block",
-          });
-        } else {
-          gsap.to(dropdown, {
-            opacity: 0,
-            y: -10,
-            scale: 0.95,
-            duration: 0.2,
-            ease: "power2.in",
-            display: "none",
-          });
-        }
-      }
-    });
-  }, [isServicesOpen, isProjectsOpen]);
-
-  const handleDropdownToggle = (type: "services" | "projects") => {
-    if (type === "services") {
-      setIsServicesOpen(!isServicesOpen);
-      if (isProjectsOpen) setIsProjectsOpen(false);
-    } else {
-      setIsProjectsOpen(!isProjectsOpen);
-      if (isServicesOpen) setIsServicesOpen(false);
-    }
-  };
-
   const navLinks = [
-    {
-      name: "Services",
-      href: "#services",
-      hasDropdown: true,
-      type: "services",
-    },
-    {
-      name: "Projects",
-      href: "#projects",
-      hasDropdown: true,
-      type: "projects",
-    },
+    { name: "Services", href: "#services", hasDropdown: false },
+    { name: "Projects", href: "#projects", hasDropdown: false },
     { name: "About", href: "#about", hasDropdown: false },
     { name: "Contact", href: "#contact", hasDropdown: false },
   ];
-
-  // const serviceItems = [
-  //   "Custom Software",
-  //   "AI & Machine Learning",
-  //   "Web Development",
-  //   "Mobile Apps",
-  //   "UI/UX Design",
-  //   "SaaS Development",
-  // ];
-
-  // const projectItems = [
-  //   "IBIZA Journey",
-  //   "MyAnza",
-  //   "HR Management",
-  //   "E-Commerce",
-  //   "FinTech",
-  // ];
 
   return (
     <>
@@ -290,7 +182,6 @@ const Header: React.FC = () => {
         } px-6 py-3 md:px-12 lg:px-10`}
       >
         <div className="max-w-7xl mx-auto flex gap-10 items-center justify-between">
-          {/* Logo */}
           <div ref={logoRef}>
             <Link
               href="/"
@@ -300,110 +191,25 @@ const Header: React.FC = () => {
             </Link>
           </div>
 
-          {/* Navigation Links - Desktop */}
           <nav
             ref={navRef}
             className="hidden lg:flex items-center space-x-1 text-base font-medium text-gray-500"
           >
             {navLinks.map((link) => (
-              <div
-                key={link.name}
-                className="relative"
-                ref={link.hasDropdown ? dropdownRef : null}
-                // onMouseEnter={() => {
-                //   if (link.hasDropdown && link.type === "services")
-                //     setIsServicesOpen(true);
-                //   if (link.hasDropdown && link.type === "projects")
-                //     setIsProjectsOpen(true);
-                // }}
-                // onMouseLeave={() => {
-                //   if (link.hasDropdown && link.type === "services")
-                //     setIsServicesOpen(false);
-                //   if (link.hasDropdown && link.type === "projects")
-                //     setIsProjectsOpen(false);
-                // }}
-              >
-                <button
-                  className={`flex items-center gap-1 px-4 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 ${
-                    (link.type === "services" && isServicesOpen) ||
-                    (link.type === "projects" && isProjectsOpen)
-                      ? "text-gray-900 bg-gray-50"
-                      : ""
-                  }`}
-                  // onClick={() => {
-                  //   if (link.hasDropdown && link.type === "services")
-                  //     handleDropdownToggle("services");
-                  //   if (link.hasDropdown && link.type === "projects")
-                  //     handleDropdownToggle("projects");
-                  // }}
+              <div key={link.name} className="relative">
+                <Link
+                  href={link.href}
+                  className="flex items-center gap-1 px-4 py-2 rounded-lg hover:text-gray-900 hover:bg-gray-50 transition-all duration-200"
                 >
                   {link.name}
-                  {/* {link.hasDropdown && (
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        (link.type === "services" && isServicesOpen) ||
-                        (link.type === "projects" && isProjectsOpen)
-                          ? "rotate-180"
-                          : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  )} */}
-                </button>
-
-                {/* Dropdown Menu - Services */}
-                {/* {link.hasDropdown && link.type === "services" && (
-                  <div
-                    className="dropdown-menu services-dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 hidden"
-                    style={{ opacity: 0, y: -10, scale: 0.95 }}
-                  >
-                    {serviceItems.map((item) => (
-                      <a
-                        key={item}
-                        href="#"
-                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-linear-to-r hover:from-[#4A4CE6]/10 hover:via-[#34A1B4]/10 hover:to-[#4BE191]/10 hover:text-gray-900 transition-all duration-200"
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </div>
-                )} */}
-
-                {/* Dropdown Menu - Projects */}
-                {/* {link.hasDropdown && link.type === "projects" && (
-                  <div
-                    className="dropdown-menu projects-dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 hidden"
-                    style={{ opacity: 0, y: -10, scale: 0.95 }}
-                  >
-                    {projectItems.map((item) => (
-                      <a
-                        key={item}
-                        href="#"
-                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-linear-to-r hover:from-[#4A4CE6]/10 hover:via-[#34A1B4]/10 hover:to-[#4BE191]/10 hover:text-gray-900 transition-all duration-200"
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </div>
-                )} */}
+                </Link>
               </div>
             ))}
           </nav>
 
           <span className="text-gray-300 hidden lg:block">|</span>
 
-          {/* Right Section */}
           <div className="flex items-center space-x-4">
-            {/* Language Toggle */}
             <div
               ref={languageRef}
               className="hidden sm:flex items-center space-x-1 text-sm font-medium text-gray-600 shadow-[inset_0_1px_8px_rgba(0,0,0,0.15)] px-3 py-1.5 rounded-lg"
@@ -417,7 +223,6 @@ const Header: React.FC = () => {
               </button>
             </div>
 
-            {/* Start a Project Button */}
             <div ref={ctaRef}>
               <Link
                 href="#"
@@ -427,10 +232,10 @@ const Header: React.FC = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6 text-gray-700" />
@@ -450,13 +255,12 @@ const Header: React.FC = () => {
         onClick={() => setIsMobileMenuOpen(false)}
       />
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Content Container */}
       <div
         ref={mobileMenuRef}
         className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 lg:hidden flex flex-col"
-        style={{ x: "100%", opacity: 0 }}
+        style={{ transform: "translateX(100%)", opacity: 0 }}
       >
-        {/* Mobile Menu Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <Link
             href="/"
@@ -473,71 +277,16 @@ const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Links */}
         <div className="flex-1 overflow-y-auto p-6 space-y-2">
           {navLinks.map((link) => (
-            <div key={link.name}>
-              {link.hasDropdown ? (
-                <>
-                  <button
-                    className="w-full flex items-center justify-between px-4 py-3 text-lg font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors mobile-link"
-                    onClick={() => {
-                      if (link.type === "services")
-                        handleDropdownToggle("services");
-                      if (link.type === "projects")
-                        handleDropdownToggle("projects");
-                    }}
-                  >
-                    {link.name}
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        (link.type === "services" && isServicesOpen) ||
-                        (link.type === "projects" && isProjectsOpen)
-                          ? "rotate-180"
-                          : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-
-                  {/* {((link.type === "services" && isServicesOpen) ||
-                    (link.type === "projects" && isProjectsOpen)) && (
-                    <div className="ml-4 space-y-1 overflow-hidden">
-                      {(link.type === "services"
-                        ? serviceItems
-                        : projectItems
-                      ).map((item) => (
-                        <Link
-                          key={item}
-                          href="#"
-                          className="block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors mobile-link"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </div>
-                  )} */}
-                </>
-              ) : (
-                <Link
-                  href={link.href}
-                  className="block px-4 py-3 text-lg font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors mobile-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              )}
-            </div>
+            <Link
+              key={link.name}
+              href={link.href}
+              className="block px-4 py-3 text-lg font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors mobile-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {link.name}
+            </Link>
           ))}
 
           <div className="pt-6 border-t border-gray-100 mt-6 mobile-link">
