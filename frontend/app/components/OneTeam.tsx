@@ -72,7 +72,7 @@ const OneTeam: React.FC = () => {
           trigger: ".header-trigger",
           start: "top 80%",
           end: "bottom 80%",
-          scrub: 1, // numeric scrub = slight catch-up lag, feels less mechanical than scrub: true
+          scrub: 1,
         },
       });
 
@@ -92,75 +92,36 @@ const OneTeam: React.FC = () => {
           "-=0.8",
         );
 
-      // ---- Service Cards - Unified Master Timeline ----
+      // ---- Service Cards - One-by-One from Below ----
       const servicesTL = gsap.timeline({
         scrollTrigger: {
-          // Trigger off a stable, non-animated element instead of ".reveal-btn"
-          // (which is itself being translated by headerTimeline above).
-          trigger: ".services-section", // give the section wrapper this class
-          start: "top 100%",
-          end: "bottom top",
-          // markers: true, // dev only — leave off unless actively tuning
-          scrub: 1, // no toggleActions with scrub — scrub already owns play direction
-        },
-        defaults: {
-          duration: 1.2,
-          ease: "power3.out", // monotonic — no overshoot, no mid-scroll "bounce back"
+          trigger: ".services-section",
+          start: "top 85%",
+          // markers: true,
+          toggleActions: "play reverse play reverse",
         },
       });
 
-      gsap.set([".row1-left", ".row1-right"], { transformPerspective: 1000 });
+      // Get all service cards
+      const allCards = document.querySelectorAll(".service-card");
 
-      // 1) First row – left card, eased in from the left (symmetric distance with right)
-      servicesTL.from(
-        ".row1-left",
-        {
-          x: -180,
-          opacity: 0,
-          scale: 0.94,
-          rotationY: 6,
-          // no clearProps — let GSAP keep controlling this for the whole scrub range
-        },
-        0,
-      );
+      // Set initial state - hidden below
+      gsap.set(allCards, {
+        y: 80,
+        opacity: 0,
+        scale: 0.95,
+      });
 
-      // 2) First row – right card, mirrors the left card's distance/scale/rotation
-      servicesTL.from(
-        ".row1-right",
-        {
-          x: 180,
-          opacity: 0,
-          scale: 0.94,
-          rotationY: -6,
-        },
-        0,
-      );
-
-      // 3) First row – middle cards rise together, starting a beat after the
-      // outer cards so the eye has a clear left/right → center order instead
-      // of everything landing in perfect unison (reads as orchestrated, not robotic)
-      servicesTL.from(
-        ".row1-mid",
-        {
-          y: 80,
-          opacity: 0,
-          scale: 0.96,
-          stagger: 0.08,
-        },
-        0.1,
-      );
-
-      // 4) Second row – follows shortly after row 1 settles
-      servicesTL.from(
-        ".row2-item",
-        {
-          y: 80,
-          opacity: 0,
-          scale: 0.96,
-          stagger: 0.08,
-        },
-        0.2,
-      );
+      // Animate each card one-by-one from below
+      servicesTL.to(allCards, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.2,
+        stagger: 0.12,
+        ease: "power3.out",
+        clearProps: "transform,opacity",
+      });
     },
     { scope: container },
   );
@@ -203,39 +164,32 @@ const OneTeam: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-8">
+        <div className="services-section space-y-8">
           {/* First Row Container */}
           <div className="service-wrapper1 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {firstRow.map((service, index) => {
-              // Properly assign animation targets
-              let animClass = "row1-mid";
-              if (index === 0) animClass = "row1-left";
-              if (index === 3) animClass = "row1-right";
-
-              return (
-                <div
-                  key={index}
-                  className={`${animClass} group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg`}
-                >
-                  <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
-                    <Image
-                      alt={service.title}
-                      src={service.image}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
-
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                    {service.description}
-                  </p>
+            {firstRow.map((service, index) => (
+              <div
+                key={index}
+                className="service-card group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
+                  <Image
+                    alt={service.title}
+                    src={service.image}
+                    width={100}
+                    height={100}
+                  />
                 </div>
-              );
-            })}
+
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Second Row Container */}
@@ -243,7 +197,7 @@ const OneTeam: React.FC = () => {
             {secondRow.map((service, index) => (
               <div
                 key={index}
-                className="row2-item group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
+                className="service-card group bg-white rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
               >
                 <div className="w-15 h-15 rounded-xl bg-gray-900/5 flex items-center justify-center mb-4 group-hover:bg-gray-900/10 transition-colors">
                   <Image

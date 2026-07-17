@@ -175,7 +175,7 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className={`w-auto mx-auto mt-4 rounded-lg transition-all duration-300 ${
+        className={`w-fit mx-auto mt-4 rounded-lg transition-all duration-300 ${
           scrolled
             ? "bg-white/95 shadow-lg backdrop-blur-md border border-gray-100"
             : "bg-[#FFFFFF66] shadow border-b border-gray-200"
