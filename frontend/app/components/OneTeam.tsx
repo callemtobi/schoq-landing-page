@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { image1, image2, image3, image4, image5, image6 } from "@/assets";
+import { heroBgImage } from "@/public";
 
 // Register ScrollTrigger safely
 if (typeof window !== "undefined") {
@@ -128,8 +129,9 @@ const OneTeam: React.FC = () => {
 
   return (
     <section
+      style={{ backgroundImage: `url(${heroBgImage.src})` }}
       ref={container}
-      className="w-full bg-gray-50 px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-cover bg-center bg-no-repeat px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto header-trigger">
         {/* Header with wrapper mask */}

@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { heroBgImage } from "@/public";
 
 const Launch: React.FC = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -89,7 +90,8 @@ const Launch: React.FC = () => {
   return (
     <section
       ref={container}
-      className="w-full bg-white px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-x-hidden"
+      style={{ backgroundImage: `url(${heroBgImage.src})` }}
+      className="w-full bg-cover bg-center bg-no-repeat px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 mb-16 md:mb-20 relative">

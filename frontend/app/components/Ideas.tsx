@@ -3,32 +3,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Idea1 from "@/public/Idea1.png";
 import Idea2 from "@/public/Idea2.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import { heroBgImage } from "@/public";
 
 interface Project {
   id: number;
   title: string;
-  description: string;
   image: typeof Idea1;
 }
 
 // Pure helper: given a card's own index and the currently active slide,
-// return where that card should sit in the stack. Shared by the mount-time
-// entrance setup and the ongoing slide-transition effect so both always
-// agree on the "resting" layout.
+// return where that card should sit in the stack.
 const getCardState = (index: number, activeIndex: number, total: number) => {
   let position = index - activeIndex;
   if (position < -2) position += total;
   if (position > total - 3) position -= total;
 
-  if (position === 0) return { xPercent: 0, scale: 1, zIndex: 30, opacity: 1 };
+  if (position === 0) return { xPercent: 0, scale: 1, zIndex: 30, opacity: 0 };
   if (position === -1)
-    return { xPercent: -35, scale: 0.88, zIndex: 20, opacity: 0.9 };
+    return { xPercent: -35, scale: 0.88, zIndex: 20, opacity: 1 };
   if (position === -2)
     return { xPercent: -65, scale: 0.76, zIndex: 10, opacity: 0.75 };
   return { xPercent: 0, scale: 1, zIndex: 0, opacity: 0 };
@@ -48,22 +47,11 @@ const Ideas: React.FC = () => {
     {
       id: 1,
       title: "MyAnza",
-      description:
-        "MyAnza is a pioneering-first social platform built for leisure, adventure, and meaningful digital interactions. The platform enables users to share content, connect with others, and explore new destinations. MyAnza's innovative approach to travel and social networking has been recognized by several industry awards.",
       image: Idea2,
     },
     {
       id: 2,
       title: "Workforce Management System for HR",
-      description:
-        "Designed and developed a custom attendance management system. The solution includes employee attendance reporting dashboards, role-based permissions, shift scheduling, and more.",
-      image: Idea1,
-    },
-    {
-      id: 3,
-      title: "NEVER STOP EXPLORING THE WORLD",
-      description:
-        "A comprehensive travel exploration platform connecting adventurers with unique experiences worldwide.",
       image: Idea1,
     },
   ];
@@ -74,19 +62,13 @@ const Ideas: React.FC = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides);
   };
 
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
-
-  // Auto-play carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (!isDragging) {
-        nextSlide();
-      }
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [isDragging]);
 
   // Touch and mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -128,35 +110,16 @@ const Ideas: React.FC = () => {
     setIsDragging(false);
   };
 
-  // ---- Header text reveal (unchanged) ----
+  // ---- Header text reveal ----
   useGSAP(
     () => {
-      //   const tl = gsap.timeline({
-      //     scrollTrigger: {
-      //       trigger: container.current,
-      //       start: "top 40%",
-      //       end: "bottom top",
-      //       toggleActions: "play reverse play reverse",
-      //     },
-      //     defaults: { ease: "power3.out" },
-      //   });
-
-      //   tl.from(".header-two", {
-      //     yPercent: 100,
-      //     opacity: 0,
-      //     duration: 1,
-      //     delay: 0.5,
-      //   });
-      // },
-
       const headerTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: "top 30%",
+          start: "top 60%",
           end: "bottom 60%",
           markers: true,
           toggleActions: "play reverse play reverse",
-          // scrub: 1,
         },
       });
 
@@ -169,18 +132,14 @@ const Ideas: React.FC = () => {
     { scope: container },
   );
 
-  // ---- Card stack: one-time directional entrance ----
-  // Runs once, decoupled from the header's reverse-capable trigger above —
-  // the cards shouldn't replay their entrance every time someone scrolls
-  // past this section again while the carousel is also mid-autoplay.
+  // ---- Card stack: Swift + Smooth Entrance Animation ----
   useGSAP(
     () => {
-      // Lock in the resting stacked layout instantly (no animation) as the
-      // base state that the entrance tween will animate away from.
+      // Set initial state for cards
       projects.forEach((_, index) => {
         const el = cardRefs.current[index];
         if (!el) return;
-        const state = getCardState(index, 0, totalSlides); // currentIndex is 0 on mount
+        const state = getCardState(index, 0, totalSlides);
         gsap.set(el, {
           xPercent: state.xPercent,
           scale: state.scale,
@@ -189,33 +148,54 @@ const Ideas: React.FC = () => {
         });
       });
 
-      // index 0 = front/right card -> enters from bottom-right
-      // index 1 = middle card      -> enters from bottom
-      // index 2 = back/left card   -> enters from bottom-left
-      const entranceX = [200, 0, -200];
+      // Swift entrance animation with different directions
+      const entranceConfigs = [
+        { x: 250, y: 0, rotation: 8, scale: 0.85 },
+        { x: 0, y: 180, rotation: -5, scale: 0.88 },
+      ];
 
       const cardsTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".start-btn",
-          start: "top 80%",
-          // once: true,
+          start: "top 85%",
+          toggleActions: "play reverse play reverse",
         },
-        defaults: { duration: 1.1, ease: "power3.out" },
+        defaults: { duration: 0.9, ease: "power3.out" },
       });
 
-      entranceX.forEach((x, index) => {
+      entranceConfigs.forEach((config, index) => {
         const el = cardRefs.current[index];
         if (!el) return;
-        cardsTl.from(el, { x, y: 160, opacity: 0 }, index === 0 ? 0 : "-=0.85");
+
+        const state = getCardState(index, 0, totalSlides);
+
+        cardsTl.fromTo(
+          el,
+          {
+            x: config.x,
+            y: config.y,
+            opacity: 0,
+            scale: config.scale,
+            rotation: config.rotation,
+          },
+          {
+            x: -10,
+            y: 0,
+            rotation: 0,
+            opacity: state.opacity,
+            scale: state.scale,
+            xPercent: state.xPercent,
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          index === 0 ? 0 : "-=0.7",
+        );
       });
     },
     { scope: container },
   );
 
-  // ---- Card stack: smooth slide-to-slide transition ----
-  // Replaces the old CSS `transition-all` approach. Skips the very first
-  // run (mount) since the entrance effect above already establishes the
-  // resting layout for currentIndex === 0.
+  // ---- Card stack: Smooth slide-to-slide transition ----
   useGSAP(
     () => {
       if (isFirstRender.current) {
@@ -228,16 +208,17 @@ const Ideas: React.FC = () => {
         if (!el) return;
         const state = getCardState(index, currentIndex, totalSlides);
 
-        gsap.set(el, { zIndex: state.zIndex }); // stacking order snaps instantly
+        gsap.set(el, { zIndex: state.zIndex });
         gsap.to(el, {
           xPercent: state.xPercent,
           scale: state.scale,
           opacity: state.opacity,
-          x: 0,
+          x: -20,
           y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          overwrite: "auto", // prevents pile-up if autoplay ticks before a tween finishes
+          rotation: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          overwrite: "auto",
         });
       });
     },
@@ -246,27 +227,28 @@ const Ideas: React.FC = () => {
 
   return (
     <section
+      style={{ backgroundImage: `url(${heroBgImage.src})` }}
       ref={container}
-      className="w-full bg-slate-50/50 px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="header-one mb-2">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1] text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1] text-center">
             IDEAS BROUGHT <br /> TO LIFE
           </h2>
         </div>
 
         {/* Description and CTA */}
-        <div className="header-two grid grid-cols-1 lg:grid-cols-1 place-items-center gap-6 mb-12 md:mb-16">
-          <p className="max-w-[50%] text-base text-center sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+        <div className="header-two grid grid-cols-1 place-items-center gap-4 sm:gap-6 mb-8 sm:mb-12 md:mb-16">
+          <p className="w-[90%] sm:w-[75%] md:w-[60%] lg:w-[50%] text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed text-center">
             Explore selected platforms, applications and digital experiences
             designed and developed by Schoq.
           </p>
           <div className="flex items-start justify-center">
             <Link
               href="#"
-              className="start-btn rounded-lg inline-block bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] text-white text-base sm:text-lg font-medium px-8 py-3.5  hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl"
+              className="start-btn rounded-lg inline-block bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] text-white text-sm sm:text-base lg:text-lg font-medium px-6 sm:px-8 py-2.5 sm:py-3.5 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
             >
               Start a Project
             </Link>
@@ -274,10 +256,10 @@ const Ideas: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative w-full h-87.5 md:h-120 flex items-center justify-end px-4 md:px-12">
+        <div className="relative w-full h-80 sm:h-100 md:h-125 lg:h-140 xl:h-160 flex items-center justify-center px-2 sm:px-4">
           <div
             ref={carouselRef}
-            className="relative w-full h-full flex items-center justify-end select-none cursor-grab active:cursor-grabbing"
+            className="relative w-full h-full flex items-center justify-center select-none cursor-grab active:cursor-grabbing"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -292,47 +274,55 @@ const Ideas: React.FC = () => {
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
-                className="absolute right-0 w-full md:w-[75%] lg:w-[68%] h-full origin-right pointer-events-auto"
+                className="absolute left-1/2 -translate-x-1/2 w-[75%] md:w-[85%] lg:w-[75%] xl:w-[68%] h-full origin-center pointer-events-auto"
               >
-                <div className="w-full h-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100/50 flex flex-row items-stretch">
-                  {/* Left side info panel */}
-                  <div className="w-1/2 p-6 md:p-12 flex flex-col justify-center">
-                    <h3 className="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-[#2B354F] mb-3 md:mb-6">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs md:text-sm lg:text-base text-gray-500 leading-relaxed line-clamp-4 md:line-clamp-6">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Right side mockup/visual */}
-                  <div className="w-1/2 relative bg-gray-50/50 flex items-center justify-center overflow-hidden border-l border-gray-100">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        priority
-                      />
-                    </div>
+                <div className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-100/50">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw"
+                      priority
+                    />
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Navigation Buttons */}
+          {totalSlides > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-1 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-1.5 sm:p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 z-10 backdrop-blur-sm"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-800" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-1 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-1.5 sm:p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 z-10 backdrop-blur-sm"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-800" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center mt-10 md:mt-14 gap-2">
+        <div className="flex justify-center mt-6 sm:mt-8 md:mt-10 lg:mt-14 gap-1.5 sm:gap-2">
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "bg-gray-800 w-8"
-                  : "bg-gray-300 hover:bg-gray-400"
+                  ? "bg-gray-800 w-6 sm:w-8"
+                  : "bg-gray-300 w-1.5 sm:w-2 hover:bg-gray-400"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

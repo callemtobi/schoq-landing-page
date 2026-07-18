@@ -44,7 +44,7 @@ const Main: React.FC = () => {
           tl.fromTo(
             ".main-tags",
             { xPercent: -20, x: "-100%", opacity: 0.4 },
-            { xPercent: 10, x: "35", opacity: 1 },
+            { xPercent: 15, x: "35", opacity: 1 },
             0,
           );
 
