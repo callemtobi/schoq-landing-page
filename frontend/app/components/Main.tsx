@@ -24,15 +24,14 @@ const Main: React.FC = () => {
     () => {
       const mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Desktop Animation (lg and above)
-        mm.add("(min-width: 1024px)", () => {
+      mm.add(
+        "(prefers-reduced-motion: no-preference) and (min-width: 1024px)",
+        () => {
           const tl = gsap.timeline({
             defaults: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
             delay: REVEAL_DELAY,
           });
 
-          // Desktop: Main container reveals left-to-right
           tl.fromTo(
             ".main-container",
             { clipPath: "inset(0% 99% 0% 0%)", x: "60%" },
@@ -40,39 +39,29 @@ const Main: React.FC = () => {
             0,
           );
 
-          // Desktop: Tags slide in from left
           tl.fromTo(
             ".main-tags",
-            { xPercent: -20, x: "-100%", opacity: 0.4 },
+            { xPercent: -20, x: "-100%", opacity: 1 },
             { xPercent: 15, x: "35", opacity: 1 },
             0,
           );
 
-          // Desktop: Tag letters animation
           tl.fromTo(
             ".tag-rest",
             { opacity: 1 },
-            {
-              opacity: 0,
-              delay: 0.1,
-              stagger: 0.06,
-            },
+            { opacity: 0, delay: 0.1, stagger: 0.06 },
             0,
           );
-          tl.to(
-            ".tag-first",
-            {
-              stagger: 0.06,
-              color: "#4A4CE6",
-            },
-            0,
-          );
+
+          tl.to(".tag-first", { stagger: 0.06, color: "#4A4CE6" }, 0);
 
           return () => tl.kill();
-        });
+        },
+      );
 
-        // Mobile Animation (below lg)
-        mm.add("(max-width: 1023px)", () => {
+      mm.add(
+        "(prefers-reduced-motion: no-preference) and (max-width: 1023px)",
+        () => {
           const tl = gsap.timeline({
             defaults: { duration: 1.2, ease: "power3.out" },
             delay: 0.5,
@@ -80,7 +69,7 @@ const Main: React.FC = () => {
 
           // Mobile: Main container fades up with scale
           tl.fromTo(
-            ".main-container",
+            ".m-main-container",
             {
               opacity: 0,
               y: 40,
@@ -95,7 +84,7 @@ const Main: React.FC = () => {
           );
 
           // Mobile: Tags fade in with stagger from bottom
-          const tags = document.querySelectorAll(".tags");
+          const tags = document.querySelectorAll(".m-tags");
           tl.fromTo(
             tags,
             {
@@ -115,24 +104,123 @@ const Main: React.FC = () => {
           );
 
           // Mobile: Keep full tag text visible (no letter animation)
-          tl.set(".tag-rest", { opacity: 1 });
-          tl.set(".tag-first", { color: "#4A4CE6" }, "-=0.5");
+          tl.set(".m-tag-rest", { opacity: 1 });
+          tl.set(".m-tag-first", { color: "#4A4CE6" }, "-=0.5");
 
           return () => tl.kill();
-        });
-      });
+        },
+      );
+      //   // Desktop Animation (lg and above)
+      //   mm.add("(min-width: 1024px)", () => {
+      //     const tl = gsap.timeline({
+      //       defaults: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
+      //       delay: REVEAL_DELAY,
+      //     });
 
-      // Reduced-motion users: snap to end state
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(".main-container", {
-          clipPath: "inset(0% 0% 0% 0%)",
-          opacity: 1,
-          y: 0,
-          scale: 1,
-        });
-        gsap.set(".main-tags", { xPercent: 0, opacity: 1 });
-        gsap.set(".tag-rest", { opacity: 0 });
-      });
+      //     // Desktop: Main container reveals left-to-right
+      //     tl.fromTo(
+      //       ".main-container",
+      //       { clipPath: "inset(0% 99% 0% 0%)", x: "60%" },
+      //       { clipPath: "inset(0% 0% 0% 0%)", x: "10%" },
+      //       0,
+      //     );
+
+      //     // Desktop: Tags slide in from left
+      //     tl.fromTo(
+      //       ".main-tags",
+      //       { xPercent: -20, x: "-100%", opacity: 1 },
+      //       { xPercent: 15, x: "35", opacity: 1 },
+      //       0,
+      //     );
+
+      //     // Desktop: Tag letters animation
+      //     tl.fromTo(
+      //       ".tag-rest",
+      //       { opacity: 1 },
+      //       {
+      //         opacity: 0,
+      //         delay: 0.1,
+      //         stagger: 0.06,
+      //         ease: "power2.inOut",
+      //         // Force the opacity to animate
+      //         clearProps: "opacity",
+      //       },
+      //       0,
+      //     );
+      //     tl.to(
+      //       ".tag-first",
+      //       {
+      //         stagger: 0.06,
+      //         color: "#4A4CE6",
+      //       },
+      //       0,
+      //     );
+
+      //     return () => tl.kill();
+      //   });
+
+      //   // Mobile Animation (below lg)
+      //   mm.add("(max-width: 1023px)", () => {
+      //     const tl = gsap.timeline({
+      //       defaults: { duration: 1.2, ease: "power3.out" },
+      //       delay: 0.5,
+      //     });
+
+      //     // Mobile: Main container fades up with scale
+      //     tl.fromTo(
+      //       ".main-container",
+      //       {
+      //         opacity: 0,
+      //         y: 40,
+      //         scale: 0.95,
+      //       },
+      //       {
+      //         opacity: 1,
+      //         y: 0,
+      //         scale: 1,
+      //       },
+      //       0,
+      //     );
+
+      //     // Mobile: Tags fade in with stagger from bottom
+      //     const tags = document.querySelectorAll(".tags");
+      //     tl.fromTo(
+      //       tags,
+      //       {
+      //         opacity: 0,
+      //         y: 20,
+      //         scale: 0.9,
+      //       },
+      //       {
+      //         opacity: 1,
+      //         y: 0,
+      //         scale: 1,
+      //         stagger: 0.08,
+      //         duration: 0.8,
+      //         ease: "power2.out",
+      //       },
+      //       "-=0.3",
+      //     );
+
+      //     // Mobile: Keep full tag text visible (no letter animation)
+      //     tl.set(".tag-rest", { opacity: 1 });
+      //     tl.set(".tag-first", { color: "#4A4CE6" }, "-=0.5");
+
+      //     return () => tl.kill();
+      //   });
+      // });
+
+      // // Reduced-motion users: snap to end state
+      // mm.add("(prefers-reduced-motion: reduce)", () => {
+      //   gsap.set(".main-container", {
+      //     clipPath: "inset(0% 0% 0% 0%)",
+      //     opacity: 1,
+      //     y: 0,
+      //     scale: 1,
+      //   });
+      //   gsap.set(".main-tags", { xPercent: 0, opacity: 1 });
+      //   gsap.set(".tag-rest", { opacity: 0 });
+      // });
 
       return () => mm.revert();
     },
@@ -148,7 +236,7 @@ const Main: React.FC = () => {
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center items-center pt-8 md:pt-0">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center w-full px-5">
           {/* Gradient Hero Box */}
-          <div className="main-container flex-1 bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] p-6 md:p-8 lg:p-6 xl:p-10 2xl:p-12 rounded max-w-4xl mx-auto lg:mx-0">
+          <div className="main-container m-main-container flex-1 bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] p-6 md:p-8 lg:p-6 xl:p-10 2xl:p-12 rounded max-w-4xl mx-auto lg:mx-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-bold tracking-tight leading-[1.05] text-white text-center lg:text-left">
               STOP TALKING.
               <br />
@@ -172,14 +260,14 @@ const Main: React.FC = () => {
           </div>
 
           {/* Tag Column - Desktop */}
-          <div className="main-tags hidden lg:flex flex-col justify-evenly h-auto gap-4 lg:gap-3 xl:gap-4 2xl:gap-6 shrink-0">
+          <div className="main-tags m-main-tags hidden lg:flex flex-col justify-evenly h-auto gap-4 lg:gap-3 xl:gap-4 2xl:gap-6 shrink-0">
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="tags lg:text-3xl text-2xl w-fit font-bold tracking-tight whitespace-nowrap"
+                className="tags m-tags lg:text-3xl text-2xl w-fit font-bold tracking-tight whitespace-nowrap"
               >
-                <span className="tag-first">{tag.charAt(0)}</span>
-                <span className="tag-rest">{tag.slice(1)}</span>
+                <span className="tag-first m-tag-first">{tag.charAt(0)}</span>
+                <span className="tag-rest m-tag-rest">{tag.slice(1)}</span>
               </span>
             ))}
           </div>

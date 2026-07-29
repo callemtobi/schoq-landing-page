@@ -77,29 +77,29 @@ const OneTeam: React.FC = () => {
         },
       });
 
-      headerTimeline
-        .from(".reveal-text", {
-          y: "100%",
-          duration: 1.1,
-          ease: "power4.out",
-        })
-        .from(
-          ".reveal-btn",
-          {
-            y: "110%",
-            duration: 0.5,
-            ease: "power3.out",
-          },
-          "-=0.8",
-        );
+      headerTimeline.from(".reveal-text", {
+        y: "100%",
+        duration: 0.4,
+        ease: "power4.out",
+      });
+      // .from(
+      //   ".reveal-btn",
+      //   {
+      //     y: "110%",
+      //     duration: 0.5,
+      //     ease: "power3.out",
+      //   },
+      //   "-=0.3",
+      // );
 
-      // ---- Service Cards - One-by-One from Below ----
+      // ---- Service Cards - One-by-One from Below (view trigger only) ----
       const servicesTL = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-section",
           start: "top 85%",
+          end: "bottom 20%",
           // markers: true,
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none play reverse",
         },
       });
 
@@ -131,7 +131,7 @@ const OneTeam: React.FC = () => {
     <section
       style={{ backgroundImage: `url(${heroBgImage.src})` }}
       ref={container}
-      className="w-full bg-cover bg-center bg-no-repeat px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-cover bg-center bg-no-repeat px-6 md:px-12 lg:px-20 py-16 md:py-24 lg:py-15 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto header-trigger">
         {/* Header with wrapper mask */}

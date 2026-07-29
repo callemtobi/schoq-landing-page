@@ -118,7 +118,7 @@ const Ideas: React.FC = () => {
           trigger: container.current,
           start: "top 60%",
           end: "bottom 60%",
-          markers: true,
+          // markers: true,
           toggleActions: "play reverse play reverse",
         },
       });
@@ -158,7 +158,7 @@ const Ideas: React.FC = () => {
         scrollTrigger: {
           trigger: ".start-btn",
           start: "top 85%",
-          toggleActions: "play reverse play reverse",
+          toggleActions: "play none play reverse",
         },
         defaults: { duration: 0.9, ease: "power3.out" },
       });
@@ -229,7 +229,7 @@ const Ideas: React.FC = () => {
     <section
       style={{ backgroundImage: `url(${heroBgImage.src})` }}
       ref={container}
-      className="w-full bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden"
+      className="w-full bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24 lg:py-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}

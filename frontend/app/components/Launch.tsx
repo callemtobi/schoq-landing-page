@@ -37,8 +37,8 @@ const Launch: React.FC = () => {
           trigger: ".header-one",
           start: "top 90%",
           end: "top 50%",
-          scrub: 1, // Inertia smoothing
-          // markers: true, // Keep for debugging; remove before shipping
+          // markers: true, // Keep for debugging
+          toggleActions: "play none none reset", // Play animation when element enters viewport
         },
       });
 
@@ -51,8 +51,8 @@ const Launch: React.FC = () => {
           trigger: ".header-two",
           start: "top 90%",
           end: "top 55%",
-          scrub: 1,
-          // markers: true,
+          // markers: true, // Keep for debugging
+          toggleActions: "play none none reset",
         },
       });
 
@@ -65,8 +65,8 @@ const Launch: React.FC = () => {
           trigger: ".header-three",
           start: "top 90%",
           end: "top 55%",
-          scrub: 1,
-          // markers: true,
+          // markers: true, // Keep for debugging
+          toggleActions: "play none none reset",
         },
       });
 
@@ -74,13 +74,14 @@ const Launch: React.FC = () => {
       gsap.from(".timeline-item", {
         y: 40,
         opacity: 0,
-        stagger: 0.2, // Sequenced interval tied directly to scroll depth
+        stagger: 0.2,
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".timeline-wrapper",
           start: "top 85%",
           end: "bottom 65%",
-          scrub: 1, // Tied directly to scrolling speed
+          // markers: true, // Keep for debugging
+          toggleActions: "play none none reset",
         },
       });
     },
@@ -91,7 +92,7 @@ const Launch: React.FC = () => {
     <section
       ref={container}
       style={{ backgroundImage: `url(${heroBgImage.src})` }}
-      className="w-full bg-cover bg-center bg-no-repeat px-6 py-16 md:px-12 lg:px-20 md:py-24 lg:py-32 overflow-x-hidden"
+      className="w-full bg-cover bg-center bg-no-repeat px-6 md:px-12 lg:px-20 py-16 md:py-24 lg:py-15 overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 mb-16 md:mb-20 relative">
