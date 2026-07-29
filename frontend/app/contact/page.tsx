@@ -1,0 +1,25 @@
+"use client";
+
+import { useRef } from "react";
+import Header from "@/components/Header";
+import Form from "@/components/contact/Form";
+import GetInTouch from "@/components/contact/GetInTouch";
+import Footer from "@/components/Footer";
+
+const ContactPage = () => {
+  const container = useRef(null);
+
+  return (
+    <main
+      ref={container}
+      className="min-h-screen bg-background text-foreground flex flex-col"
+    >
+      <Header />
+      <Form />
+      <GetInTouch />
+      <Footer />
+    </main>
+  );
+};
+
+export default ContactPage;
