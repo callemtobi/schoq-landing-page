@@ -1,21 +1,106 @@
 "use client";
 
+import { useRef } from "react";
 import { Share2, ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Form() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%", // 30% viewport from bottom
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Explicitly keep inputs at opacity 1
+      gsap.set(
+        ".Container-Two input, .Container-Two select, .Container-Two textarea",
+        { opacity: 1 },
+      );
+
+      // --- 1ST ANIMATION: Container-One (Left Column Fade & Slide) ---
+      tl.from(".Conversation", {
+        x: -60,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      })
+        .from(
+          ".Tell-Us",
+          {
+            x: -60,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.9",
+        )
+        .from(
+          ".Share-Idea",
+          {
+            x: -60,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "-=0.3",
+        )
+        .from(
+          ".Contact-Info",
+          {
+            x: -60,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.8",
+        );
+
+      // --- 2ND ANIMATION: Container-Two (Starts simultaneously with Container-One) ---
+      // Adding `0` at the end forces this animation to initiate at timestamp 0 of the timeline
+      tl.fromTo(
+        ".Container-Two",
+        {
+          clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+        },
+        {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 2,
+          ease: "power4.inOut",
+        },
+        0, // <--- THIS POSITION PARAMETER STARTS BOTH CONTAINERS TOGETHER
+      );
+    },
+    { scope: containerRef },
+  );
+
   return (
-    <section className="min-h-screen w-full bg-white text-neutral-900 px-6 py-12 md:px-30 md:py-24 flex items-center justify-center">
+    <section
+      ref={containerRef}
+      className="min-h-screen w-full bg-white text-neutral-900 px-6 py-12 md:px-30 md:py-24 flex items-center justify-center overflow-hidden"
+    >
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16 items-start">
         {/* LEFT COLUMN: Text & Contact Information */}
-        <div className="lg:col-span-6 flex flex-col justify-between h-full pt-4">
+        <div className="Container-One lg:col-span-6 flex flex-col justify-between h-full pt-4">
           <div>
             {/* Small uppercase label */}
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-neutral-500 mb-4">
+            <p className="Conversation text-xs font-semibold tracking-[0.25em] uppercase text-neutral-500 mb-4">
               START A CONVERSATION
             </p>
 
             {/* Bold main title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.95] tracking-tight text-neutral-950 mb-6">
+            <h1 className="Tell-Us text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.95] tracking-tight text-neutral-950 mb-6">
               TELL US
               <br />
               WHAT YOU&apos;RE
@@ -24,14 +109,14 @@ export default function Form() {
             </h1>
 
             {/* Subtitle paragraph */}
-            <p className="text-neutral-500 text-sm md:text-base leading-relaxed max-w-lg mb-12">
+            <p className="Share-Idea text-neutral-500 text-sm md:text-base leading-relaxed max-w-lg mb-12">
               Share your idea, current challenge or existing product. We&apos;ll
               review the details and help define the next practical step.
             </p>
           </div>
 
           {/* Contact Details & Buttons */}
-          <div className="mb-30">
+          <div className="Contact-Info mb-30">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {/* Direct Line */}
               <div>
@@ -80,7 +165,7 @@ export default function Form() {
         </div>
 
         {/* RIGHT COLUMN: Soft Gradient Contact Form Card */}
-        <div className="lg:col-span-6 bg-linear-to-br from-teal-50/60 via-sky-100/40 to-emerald-50/50 p-6 sm:p-10 rounded-2xl border border-teal-100/50 shadow-sm">
+        <div className="Container-Two lg:col-span-6 bg-linear-to-br from-teal-50/60 via-sky-100/40 to-emerald-50/50 p-6 sm:p-10 rounded-2xl border border-teal-100/50 shadow-sm">
           <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
             {/* Name Input */}
             <div>
