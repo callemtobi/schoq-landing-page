@@ -1,11 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import Header from "@/components/Header";
 import Form from "@/components/contact/Form";
 import GetInTouch from "@/components/contact/GetInTouch";
 import Section3 from "@/components/about/Section3";
-import Footer from "@/components/Footer";
 
 const ContactPage = () => {
   const container = useRef(null);
@@ -13,13 +11,11 @@ const ContactPage = () => {
   return (
     <main
       ref={container}
-      className="min-h-screen bg-background text-foreground flex flex-col"
+      className="min-h-screen bg-background text-foreground flex flex-col pb-12 pt-10"
     >
-      <Header />
       <Form />
       <GetInTouch />
       <Section3 />
-      <Footer />
     </main>
   );
 };

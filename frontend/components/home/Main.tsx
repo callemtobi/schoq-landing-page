@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { heroBgImage } from "@/public";
 
 const TAGS = [
   "Strategy",
@@ -110,117 +111,6 @@ const Main: React.FC = () => {
           return () => tl.kill();
         },
       );
-      //   // Desktop Animation (lg and above)
-      //   mm.add("(min-width: 1024px)", () => {
-      //     const tl = gsap.timeline({
-      //       defaults: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
-      //       delay: REVEAL_DELAY,
-      //     });
-
-      //     // Desktop: Main container reveals left-to-right
-      //     tl.fromTo(
-      //       ".main-container",
-      //       { clipPath: "inset(0% 99% 0% 0%)", x: "60%" },
-      //       { clipPath: "inset(0% 0% 0% 0%)", x: "10%" },
-      //       0,
-      //     );
-
-      //     // Desktop: Tags slide in from left
-      //     tl.fromTo(
-      //       ".main-tags",
-      //       { xPercent: -20, x: "-100%", opacity: 1 },
-      //       { xPercent: 15, x: "35", opacity: 1 },
-      //       0,
-      //     );
-
-      //     // Desktop: Tag letters animation
-      //     tl.fromTo(
-      //       ".tag-rest",
-      //       { opacity: 1 },
-      //       {
-      //         opacity: 0,
-      //         delay: 0.1,
-      //         stagger: 0.06,
-      //         ease: "power2.inOut",
-      //         // Force the opacity to animate
-      //         clearProps: "opacity",
-      //       },
-      //       0,
-      //     );
-      //     tl.to(
-      //       ".tag-first",
-      //       {
-      //         stagger: 0.06,
-      //         color: "#4A4CE6",
-      //       },
-      //       0,
-      //     );
-
-      //     return () => tl.kill();
-      //   });
-
-      //   // Mobile Animation (below lg)
-      //   mm.add("(max-width: 1023px)", () => {
-      //     const tl = gsap.timeline({
-      //       defaults: { duration: 1.2, ease: "power3.out" },
-      //       delay: 0.5,
-      //     });
-
-      //     // Mobile: Main container fades up with scale
-      //     tl.fromTo(
-      //       ".main-container",
-      //       {
-      //         opacity: 0,
-      //         y: 40,
-      //         scale: 0.95,
-      //       },
-      //       {
-      //         opacity: 1,
-      //         y: 0,
-      //         scale: 1,
-      //       },
-      //       0,
-      //     );
-
-      //     // Mobile: Tags fade in with stagger from bottom
-      //     const tags = document.querySelectorAll(".tags");
-      //     tl.fromTo(
-      //       tags,
-      //       {
-      //         opacity: 0,
-      //         y: 20,
-      //         scale: 0.9,
-      //       },
-      //       {
-      //         opacity: 1,
-      //         y: 0,
-      //         scale: 1,
-      //         stagger: 0.08,
-      //         duration: 0.8,
-      //         ease: "power2.out",
-      //       },
-      //       "-=0.3",
-      //     );
-
-      //     // Mobile: Keep full tag text visible (no letter animation)
-      //     tl.set(".tag-rest", { opacity: 1 });
-      //     tl.set(".tag-first", { color: "#4A4CE6" }, "-=0.5");
-
-      //     return () => tl.kill();
-      //   });
-      // });
-
-      // // Reduced-motion users: snap to end state
-      // mm.add("(prefers-reduced-motion: reduce)", () => {
-      //   gsap.set(".main-container", {
-      //     clipPath: "inset(0% 0% 0% 0%)",
-      //     opacity: 1,
-      //     y: 0,
-      //     scale: 1,
-      //   });
-      //   gsap.set(".main-tags", { xPercent: 0, opacity: 1 });
-      //   gsap.set(".tag-rest", { opacity: 0 });
-      // });
 
       return () => mm.revert();
     },
@@ -230,7 +120,8 @@ const Main: React.FC = () => {
   return (
     <main
       ref={container}
-      className="min-h-screen b  px-6 py-12 md:px-12 lg:px-20 flex flex-col justify-between"
+      style={{ backgroundImage: `url(${heroBgImage.src})` }}
+      className="min-h-screen px-6 pb-12 pt-35 md:px-12 lg:px-20 flex flex-col justify-between bg-cover bg-center bg-no-repeat"
     >
       {/* Hero Content - Centered */}
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center items-center pt-8 md:pt-0">

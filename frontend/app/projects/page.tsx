@@ -30,7 +30,7 @@ export default function ServicesPage() {
         ref={titleRef}
         className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black tracking-tight text-center select-none"
       >
-        Services
+        Projects
       </h1>
     </main>
   );
