@@ -168,7 +168,7 @@ const Header: React.FC = () => {
     { name: "Services", href: "#services", hasDropdown: false },
     { name: "Projects", href: "#projects", hasDropdown: false },
     { name: "About", href: "/about", hasDropdown: false },
-    { name: "Contact", href: "#contact", hasDropdown: false },
+    { name: "Contact", href: "/contact", hasDropdown: false },
   ];
 
   return (

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Header from "@/components/Header";
 import Form from "@/components/contact/Form";
 import GetInTouch from "@/components/contact/GetInTouch";
+import Section3 from "@/components/about/Section3";
 import Footer from "@/components/Footer";
 
 const ContactPage = () => {
@@ -17,6 +18,7 @@ const ContactPage = () => {
       <Header />
       <Form />
       <GetInTouch />
+      <Section3 />
       <Footer />
     </main>
   );
