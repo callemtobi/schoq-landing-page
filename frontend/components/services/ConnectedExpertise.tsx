@@ -1,6 +1,10 @@
 "use client";
 
 import { SingleArrowIcon } from "@/components/icons/Icons";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // TypeScript interface for Expertise Cards
 interface ExpertiseCard {
@@ -9,7 +13,10 @@ interface ExpertiseCard {
   secondLine: string;
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ConnectedExpertise() {
+  const cardContainer = useRef(null);
   const expertiseItems: ExpertiseCard[] = [
     {
       id: "custom-software",
@@ -33,21 +40,38 @@ export default function ConnectedExpertise() {
     },
   ];
 
+  useGSAP(() => {
+    gsap.from(cardContainer.current, {
+      y: 150,
+      opacity: 0,
+      duration: 0.8,
+
+      scrollTrigger: {
+        trigger: cardContainer.current,
+        start: "top 30%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
+
   return (
     <section className="w-full bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center font-sans">
       <div className="max-w-6xl w-full mx-auto space-y-12 md:space-y-16 text-center">
         {/* Header Section */}
-        <div className="space-y-4 max-w-4xl mx-auto">
+        <div className="bg-red-400 space-y-4 max-w-4xl mx-auto">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-slate-800">
             Connected Expertise
           </p>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.08] uppercase max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.08] uppercase max-w-3xl mx-auto">
             Everything your mobile product may need beyond the app.
           </h2>
         </div>
 
         {/* Pill-Shaped Cards Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-center justify-center max-w-5xl mx-auto">
+        <div
+          ref={cardContainer}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-center justify-center max-w-5xl mx-auto"
+        >
           {expertiseItems.map((item) => (
             <div key={item.id} className="flex justify-center items-center">
               {/* Pill Container with Subtle Gradient Border */}

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   CurvedLine,
   DashedWireframeGrouped,
@@ -8,53 +11,165 @@ import {
   MobileWireframePurple,
 } from "@/components/icons/Icons";
 
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
 export default function ServicesHero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textHeaderRef = useRef<HTMLDivElement>(null);
+  const containerOneButtonRef = useRef<HTMLDivElement>(null);
+  const containerTwoRef = useRef<HTMLDivElement>(null);
+
+  const dashedWireframeRef = useRef<HTMLDivElement>(null);
+  const curvedLineRef = useRef<HTMLDivElement>(null);
+  const doubleArrowsRef = useRef<HTMLDivElement>(null);
+  const wireframeGroupRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // ----------------------------------------------------
+      // 1st Timeline: Container-One
+      // ----------------------------------------------------
+      const tlOne = gsap.timeline();
+
+      // Text elements slide from above with a bounce
+      tlOne.from(textHeaderRef.current, {
+        y: -200,
+        opacity: 0,
+        duration: 1.2,
+        ease: "bounce.out",
+      });
+
+      // Button slides in smoothly (no bounce) alongside the text animation finish
+      tlOne.from(
+        containerOneButtonRef.current,
+        {
+          // y: -120,
+          opacity: 0,
+          delay: 0.8,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.8", // Starts slightly before text finish for a fluid feel
+      );
+
+      // ----------------------------------------------------
+      // 2nd Timeline: Container-Two (Triggers at 30% into viewport)
+      // ----------------------------------------------------
+      const tlTwo = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerTwoRef.current,
+          start: "top 70%", // Triggers when top of containerTwo is 30% above bottom of viewport
+          toggleActions: "play none none none",
+        },
+      });
+
+      // a) Dashed Wireframe fades in
+      tlTwo.from(dashedWireframeRef.current, {
+        opacity: 0,
+        duration: 1.0,
+        ease: "power2.inOut",
+      });
+
+      // b) Double Arrows fade in
+      tlTwo.from(
+        doubleArrowsRef.current,
+        {
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.3",
+      );
+
+      // c) Curved Line fades in
+      tlTwo.from(
+        curvedLineRef.current,
+        {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
+
+      // d) Mockups appear from below with fade + slide-in + bounce
+      tlTwo.from(
+        wireframeGroupRef.current,
+        {
+          y: 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "bounce.out",
+        },
+        "-=0.6",
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center px-4 py-16 md:py-24 font-sans selection:bg-purple-100">
-      {/* Text Header Section */}
-      <div className="Container-One max-w-4xl mx-auto text-center space-y-3">
-        <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-slate-800">
-          Mobile App Development
-        </h3>
+    <main
+      ref={containerRef}
+      className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center px-4 py-16 md:py-24 font-sans selection:bg-purple-100"
+    >
+      {/* Container-One: Text Header Section */}
+      <div className="max-w-4xl mx-auto text-center space-y-3">
+        {/* Animated Text Container */}
+        <div ref={textHeaderRef} className="space-y-3">
+          <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-slate-800">
+            Mobile App Development
+          </h3>
 
-        <h1 className="text-3xl sm:text-5xl md:text-5xl font-black tracking-tight leading-[1.08] text-slate-900 uppercase max-w-8xl mx-auto">
-          Mobile products people choose to keep using.
-        </h1>
+          <h1 className="text-3xl sm:text-5xl md:text-5xl font-black tracking-tight leading-[1.08] text-slate-900 uppercase max-w-8xl mx-auto">
+            Mobile products people choose to keep using.
+          </h1>
 
-        <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
-          Schoq designs and develops intuitive, scalable mobile applications -
-          from early product strategy and UX to engineering, launch and
-          continuous improvement.
-        </p>
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal">
+            Schoq designs and develops intuitive, scalable mobile applications -
+            from early product strategy and UX to engineering, launch and
+            continuous improvement.
+          </p>
+        </div>
 
-        {/* CTA Button */}
-        <div className="pt-2">
-          <button className="px-6 py-3.5 text-sm sm:text-base font-medium text-white rounded-md bg-linear-to-r from-[#5063ed] via-[#488beb] to-[#45d197] shadow-sm hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer">
+        {/* CTA Button (Smooth slide-in without bounce) */}
+        <div ref={containerOneButtonRef} className="pt-2">
+          <button className="px-6 py-3.5 text-sm sm:text-base font-medium text-white rounded-md bg-gradient-to-r from-[#5063ed] via-[#488beb] to-[#45d197] shadow-sm hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer">
             Start Building a Mobile App
           </button>
         </div>
       </div>
 
-      {/* Process Illustration Section */}
-      <div className="Container-Two w-full max-w-6xl mx-auto mt-16 md:mt-16 overflow-x-auto pb-4 scrollbar-none">
-        <div className="min-w-212.5 relative flex items-center justify-center gap-6 py-8 px-4">
-          {/* 1. Wireframes SVG (Left Side) */}
-          <div className="Dashbed-Wireframe relative z-10 shrink-0">
+      {/* Container-Two: Process Illustration Section */}
+      <div
+        ref={containerTwoRef}
+        className="w-full max-w-6xl mx-auto mt-16 md:mt-16 overflow-x-auto pb-4 scrollbar-none"
+      >
+        <div className="min-w-[850px] relative flex items-center justify-center gap-6 py-8 px-4">
+          {/* 1. Dashed Wireframe SVG */}
+          <div ref={dashedWireframeRef} className="relative z-10 shrink-0">
             <DashedWireframeGrouped />
           </div>
 
-          {/* 2. Curved Background Line SVG */}
-          <div className="Curved-Line absolute bottom-25 inset-0 z-0 flex items-center justify-center pointer-events-none">
+          {/* 2. Curved Line SVG */}
+          <div
+            ref={curvedLineRef}
+            className="absolute bottom-25 inset-0 z-0 flex items-center justify-center pointer-events-none"
+          >
             <CurvedLine />
           </div>
 
-          {/* 3. Arrow SVG (Middle) */}
-          <div className="Double-Arrows relative z-10 shrink-0 px-1">
+          {/* 3. Double Arrow Icons SVG */}
+          <div ref={doubleArrowsRef} className="relative z-10 shrink-0 px-1">
             <DoubleArrowIcons />
           </div>
 
-          {/* 4. Mockups Side-by-Side (Right Side) */}
-          <div className="Wireframe-Group relative z-10 shrink-0 flex items-center gap-3">
+          {/* 4. Mockups / Wireframe Group */}
+          <div
+            ref={wireframeGroupRef}
+            className="relative z-10 shrink-0 flex items-center gap-3"
+          >
             <MobileWireframePurple />
             <MobileWireframeGreen />
             <MobileWireframePurple />
