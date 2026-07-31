@@ -1,37 +1,27 @@
 "use client";
 
-import React, { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import ServicesHero from "@/components/services/ServicesHero";
+import ProductBlueprint from "@/components/services/ProductBlueprint";
+import FlexibleEngagement from "@/components/services/FlexibleEngagement";
+import ConnectedExpertise from "@/components/services/ConnectedExpertise";
+import ProductDemonstration from "@/components/services/ProductDemonstration";
 
-export default function ServicesPage() {
-  const containerRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
-  // Minimal GSAP entrance animation
-  useGSAP(
-    () => {
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: "power3.out",
-      });
-    },
-    { scope: containerRef },
-  );
+const Section1 = () => {
+  const container = useRef(null);
 
   return (
     <main
-      ref={containerRef}
-      className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-4 pb-12 pt-35"
+      ref={container}
+      className="min-h-screen bg-background text-foreground flex flex-col pb-12 pt-10"
     >
-      <h1
-        ref={titleRef}
-        className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black tracking-tight text-center select-none"
-      >
-        Services
-      </h1>
+      <ServicesHero />
+      <ProductBlueprint />
+      <FlexibleEngagement />
+      <ProductDemonstration />
+      <ConnectedExpertise />
     </main>
   );
-}
+};
+
+export default Section1;
