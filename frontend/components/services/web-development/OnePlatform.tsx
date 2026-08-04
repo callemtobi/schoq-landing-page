@@ -7,7 +7,7 @@ import TabletScreen from "@/public/services/Tablet.png";
 
 export default function OnePlatform() {
   return (
-    <section className="w-full min-screen pt-16 sm:pt-20 md:pt-28 pb-0 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#f0f9ff] via-[#eef2ff] to-[#ecfdf5] flex flex-col justify-between font-sans overflow-hidden">
+    <section className="w-full min-screen pt-16 sm:pt-20 md:pt-28 pb-0 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-[#f0f9ff] via-[#eef2ff] to-[#ecfdf5] flex flex-col justify-between font-sans overflow-hidden">
       {/* Section Header */}
       <div className="max-w-4xl w-full mx-auto text-center space-y-3 pt-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase">

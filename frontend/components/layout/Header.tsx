@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { HeaderBorderStyle } from "../icons/Icons";
 
 export const NAV_LINKS = [
   {
     name: "Services",
-    href: "/services",
+    href: "#",
     children: [
       {
         title: "Web Development",
@@ -35,7 +36,7 @@ export const NAV_LINKS = [
     href: "/about",
   },
   {
-    name: "Contact",
+    name: "Contact Us",
     href: "/contact",
   },
 ];
@@ -193,7 +194,7 @@ const Header: React.FC = () => {
                       href={link.href}
                       className={`relative flex items-center gap-1.5 px-4 py-2 rounded-lg transition-all duration-200 ${
                         isActive
-                          ? "text-gray-900 font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2.5px] after:bg-linear-to-r after:from-[#4A4CE6] after:via-[#34A1B4] after:to-[#4BE191] after:rounded-full"
+                          ? "text-gray-900 font-semibold"
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
                       }`}
                     >
@@ -202,6 +203,11 @@ const Header: React.FC = () => {
                         <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                       )}
                     </Link>
+                    {isActive && (
+                      <div className="absolute bottom-1 left-4 right-3">
+                        <HeaderBorderStyle />
+                      </div>
+                    )}
 
                     {/* Desktop Hover Dropdown Menu */}
                     {hasChildren && (

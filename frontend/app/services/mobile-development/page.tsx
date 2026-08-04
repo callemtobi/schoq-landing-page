@@ -6,6 +6,7 @@ import ProductBlueprint from "@/components/services/mobile-development/ProductBl
 import FlexibleEngagement from "@/components/services/mobile-development/FlexibleEngagement";
 import ConnectedExpertise from "@/components/services/mobile-development/ConnectedExpertise";
 import ProductDemonstration from "@/components/services/mobile-development/ProductDemonstration";
+import Section3 from "@/components/layout/FooterMessage";
 
 const MobileServices = () => {
   const container = useRef(null);
@@ -20,6 +21,10 @@ const MobileServices = () => {
       <FlexibleEngagement />
       <ProductDemonstration />
       <ConnectedExpertise />
+      <Section3
+        description="Have a mobile app worth building?"
+        buttonText="Start Building a Mobile App"
+      />
     </main>
   );
 };

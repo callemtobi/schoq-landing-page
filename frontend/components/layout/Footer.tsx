@@ -4,13 +4,13 @@ import { Mail, Phone } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-white text-black px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-20">
+    <footer className="w-full bg-white text-black px-6 py-12 md:px-12 lg:px-20 md:py-16 lg:py-12">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
           {/* Brand & Description */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-extrabold tracking-tight bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] bg-clip-text text-transparent transition-transform">
+            <h2 className="text-3xl font-bold tracking-tight bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] bg-clip-text text-transparent transition-transform">
               SCHOQ
             </h2>
             <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-md">
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-10">
           <p className="text-sm text-gray-500 text-center">
             © 2025 Schoq IT Solutions. All rights reserved
           </p>

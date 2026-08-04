@@ -74,11 +74,11 @@ export default function Section1() {
       className="grid grid-cols-1 md:grid-cols-[40%_60%] grid-rows-1 md:grid-rows-2 flex-1 mt-13 mb-10 bg-white text-foreground relative"
     >
       {/* Vertical divider - hidden on mobile */}
-      <div className="hidden md:block absolute left-[40%] top-1/2 -translate-y-1/2 h-[180%] w-0.5 bg-linear-to-r from-emerald-400 to-blue-600 mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)" />
+      <div className="hidden md:block absolute left-[40%] top-1/2 -translate-y-1/2 h-[180%] w-0.5 bg-linear-to-r from-emerald-400 to-blue-600 opacity-30 mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)" />
 
       {/* Horizontal divider - hidden on mobile */}
-      <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gray-200 -translate-y-1/2" />
-      <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-emerald-400 to-blue-600 -translate-y-1/2" />
+      {/* <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-gray-200 -translate-y-1/2" /> */}
+      <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-emerald-400 to-blue-600 -translate-y-1/2 opacity-30" />
 
       {/* TOP-LEFT cell - Human Thinking */}
       <div className="human-thinking-2 flex items-center justify-center px-4 md:ps-20 py-8 md:py-4 order-1 md:order-0 border-b border-gray-100 md:border-none">

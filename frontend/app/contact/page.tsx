@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Form from "@/components/contact/Form";
 import GetInTouch from "@/components/contact/GetInTouch";
-import Section3 from "@/components/about/Section3";
+import Section3 from "@/components/layout/FooterMessage";
 
 const ContactPage = () => {
   const container = useRef(null);
@@ -15,7 +15,10 @@ const ContactPage = () => {
     >
       <Form />
       <GetInTouch />
-      <Section3 />
+      <Section3
+        description="Have a challenge worth solving?"
+        buttonText="Start a project"
+      />
     </main>
   );
 };

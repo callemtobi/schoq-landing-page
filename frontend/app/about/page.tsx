@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Section1 from "@/components/about/Section1";
 import Section2 from "@/components/about/Section2";
-import Section3 from "@/components/about/Section3";
+import Section3 from "@/components/layout/FooterMessage";
 
 const AboutPage = () => {
   const container = useRef(null);
@@ -15,7 +15,10 @@ const AboutPage = () => {
     >
       <Section1 />
       <Section2 />
-      <Section3 />
+      <Section3
+        description="Have a challenge worth solving?"
+        buttonText="Start a Project"
+      />
     </main>
   );
 };

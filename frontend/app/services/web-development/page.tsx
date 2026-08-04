@@ -6,6 +6,7 @@ import ServicesSectionTwo from "@/components/services/layout/ServicesSectionTwo"
 import ServicesSectionThree from "@/components/services/layout/ServicesSectionThree";
 import OnePlatform from "@/components/services/web-development/OnePlatform";
 import ServicesSectionFive from "@/components/services/layout/ServicesSectionFive";
+import Section3 from "@/components/layout/FooterMessage";
 
 const WebServices = () => {
   const container = useRef(null);
@@ -33,6 +34,8 @@ const WebServices = () => {
     },
   ];
   const conceptToLaunchTitle = "From Concept To Launch.";
+  const conceptToLaunchDesc =
+    "We provide a complete product delivery stack, from strategy to deployment.";
 
   // Section 3
   const flexibleEngagement = [
@@ -89,12 +92,17 @@ const WebServices = () => {
       <ServicesSectionTwo
         descriptionData={conceptToLaunch}
         mainTitle={conceptToLaunchTitle}
+        mainDesc={conceptToLaunchDesc}
       />
       <ServicesSectionThree descriptionData={flexibleEngagement} />
       <OnePlatform />
       <ServicesSectionFive
         descriptionData={expertiseItems}
         mainTitle={expertiseItemsTitle}
+      />
+      <Section3
+        description="Have a challenge worth solving? "
+        buttonText="Discuss Your Web Platform"
       />
     </main>
   );

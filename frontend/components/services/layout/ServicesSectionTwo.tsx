@@ -16,11 +16,13 @@ interface BlueprintCard {
 interface SectionTwoProps {
   descriptionData: BlueprintCard[];
   mainTitle: string;
+  mainDesc: string;
 }
 
 export default function ServicesSectionTwo({
   descriptionData,
   mainTitle,
+  mainDesc,
 }: SectionTwoProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -86,7 +88,7 @@ export default function ServicesSectionTwo({
     >
       <div className="max-w-7xl mx-auto w-full space-y-12 md:space-y-16">
         {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
+        <div className="text-center space-y-3 max-w-5xl mx-auto">
           <h2
             ref={headingRef}
             className="text-3xl sm:text-4xl md:text-4xl font-extrabold text-slate-900 tracking-tight uppercase"
@@ -97,8 +99,7 @@ export default function ServicesSectionTwo({
             ref={descriptionRef}
             className="text-slate-600 text-sm sm:text-base md:text-lg font-medium leading-relaxed"
           >
-            We provide a complete product delivery stack, from strategy to
-            deployment.
+            {mainDesc}
           </p>
         </div>
 
@@ -122,7 +123,7 @@ export default function ServicesSectionTwo({
                 </h3>
               </div>
 
-              <p className="mt-6 text-slate-500 text-xs sm:text-sm leading-relaxed font-normal">
+              <p className="mt-2 text-slate-500 text-xs sm:text-sm leading-relaxed font-normal">
                 {card.desc}
               </p>
             </div>
