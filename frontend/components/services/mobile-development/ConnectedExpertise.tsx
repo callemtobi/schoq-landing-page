@@ -40,29 +40,32 @@ export default function ConnectedExpertise() {
     },
   ];
 
-  useGSAP(() => {
-    gsap.from(cardContainer.current, {
-      y: 150,
-      opacity: 0,
-      duration: 0.8,
-
-      scrollTrigger: {
-        trigger: cardContainer.current,
-        start: "top 30%",
-        toggleActions: "play none none reverse",
-      },
-    });
-  });
+  useGSAP(
+    () => {
+      gsap.from(cardContainer.current, {
+        y: 150,
+        opacity: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: cardContainer.current,
+          start: "top 90%",
+          // markers: true,
+          toggleActions: "play none none reverse",
+        },
+      });
+    },
+    { scope: cardContainer },
+  );
 
   return (
     <section className="w-full bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center font-sans">
       <div className="max-w-6xl w-full mx-auto space-y-12 md:space-y-16 text-center">
         {/* Header Section */}
-        <div className="bg-red-400 space-y-4 max-w-4xl mx-auto">
+        <div className="space-y-4 max-w-5xl mx-auto">
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-slate-800">
             Connected Expertise
           </p>
-          <h2 className="text-3xl sm:text-5xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.08] uppercase max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl md:text-4xl font-black text-slate-900 tracking-tight leading-[1.08] uppercase max-w-3xl mx-auto">
             Everything your mobile product may need beyond the app.
           </h2>
         </div>

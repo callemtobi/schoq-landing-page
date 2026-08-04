@@ -13,34 +13,21 @@ interface BlueprintCard {
   desc: string;
 }
 
-export default function ProductBlueprint() {
+interface SectionTwoProps {
+  descriptionData: BlueprintCard[];
+  mainTitle: string;
+}
+
+export default function ServicesSectionTwo({
+  descriptionData,
+  mainTitle,
+}: SectionTwoProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const cardsGridRef = useRef<HTMLDivElement>(null);
 
-  const cardsContent: BlueprintCard[] = [
-    {
-      number: "01",
-      title: "Product Direction",
-      desc: "Defining the MVP scope, technical stack selection, and market fit analysis.",
-    },
-    {
-      number: "02",
-      title: "Experience Design",
-      desc: "High-fidelity UI systems, interactive prototypes, and user journey mapping.",
-    },
-    {
-      number: "03",
-      title: "Engineering",
-      desc: "Native iOS/Android or cross-platform development with a robust backend.",
-    },
-    {
-      number: "04",
-      title: "Quality",
-      desc: "Continuous testing, automated QA, and seamless store deployment.",
-    },
-  ];
+  const cardsContent = descriptionData;
 
   useGSAP(
     () => {
@@ -95,16 +82,16 @@ export default function ProductBlueprint() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#eef2ff] via-[#f0f9ff] to-[#ecfdf5] flex items-center justify-center selection:bg-indigo-100"
+      className="w-full min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-[#eef2ff] via-[#f0f9ff] to-[#ecfdf5] flex items-center justify-center selection:bg-indigo-100"
     >
       <div className="max-w-7xl mx-auto w-full space-y-12 md:space-y-16">
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <h2
             ref={headingRef}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight uppercase"
+            className="text-3xl sm:text-4xl md:text-4xl font-extrabold text-slate-900 tracking-tight uppercase"
           >
-            Product Blueprint
+            {mainTitle}
           </h2>
           <p
             ref={descriptionRef}
@@ -118,12 +105,12 @@ export default function ProductBlueprint() {
         {/* Cards Grid Container */}
         <div
           ref={cardsGridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch"
         >
           {cardsContent.map((card) => (
             <div
               key={card.number}
-              className="bg-white/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-shadow duration-300 [will-change:transform,opacity] flex flex-col justify-between"
+              className="bg-white/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-shadow duration-300 will-change-[transform,opacity] flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <span className="block text-2xl font-bold text-indigo-400/90 tracking-tight">

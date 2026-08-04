@@ -75,7 +75,7 @@ export default function FlexibleEngagement() {
             scrollTrigger: {
               trigger: cardsContainerRef.current,
               start: "top 60%", // 40% in view from bottom
-              toggleActions: "play reverse play reverse", // Reverses when scrolling back up
+              toggleActions: "play none none reverse", // Reverses when scrolling back up
             },
           },
         );

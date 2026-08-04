@@ -3,20 +3,49 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const NAV_LINKS = [
-  { name: "Services", href: "/services" },
-  { name: "Projects", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+export const NAV_LINKS = [
+  {
+    name: "Services",
+    href: "/services",
+    children: [
+      {
+        title: "Web Development",
+        href: "/services/web-development",
+      },
+      {
+        title: "Mobile Development",
+        href: "/services/mobile-development",
+      },
+      {
+        title: "Artificial Intelligence",
+        href: "/services/artificial-intelligence",
+      },
+    ],
+  },
+  {
+    name: "Projects",
+    href: "/projects",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+  },
 ];
 
 const Header: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(
+    null,
+  );
 
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -28,7 +57,6 @@ const Header: React.FC = () => {
 
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Entrance effects only — no scroll-based background logic anymore
   useGSAP(
     () => {
       gsap.from(logoRef.current, {
@@ -128,13 +156,12 @@ const Header: React.FC = () => {
     }
   }, [isMobileMenuOpen]);
 
+  const toggleMobileSubmenu = (name: string) => {
+    setExpandedMobileMenu((prev) => (prev === name ? null : name));
+  };
+
   return (
     <>
-      {/*
-        Full-width, transparent, absolutely positioned so it overlays
-        whatever background the page/Main renders behind it — NOT sticky,
-        NOT fixed, so it scrolls away with the page like any other element.
-      */}
       <header
         ref={headerRef}
         className="absolute inset-x-0 top-0 z-50 w-full bg-transparent"
@@ -155,19 +182,50 @@ const Header: React.FC = () => {
               className="hidden lg:flex items-center space-x-1 text-base font-medium"
             >
               {NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive =
+                  pathname === link.href ||
+                  pathname.startsWith(`${link.href}/`);
+                const hasChildren = link.children && link.children.length > 0;
+
                 return (
-                  <div key={link.name} className="relative">
+                  <div key={link.name} className="relative group">
                     <Link
                       href={link.href}
-                      className={`relative flex items-center gap-1 px-4 py-2 rounded-lg transition-all duration-200 ${
+                      className={`relative flex items-center gap-1.5 px-4 py-2 rounded-lg transition-all duration-200 ${
                         isActive
                           ? "text-gray-900 font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2.5px] after:bg-linear-to-r after:from-[#4A4CE6] after:via-[#34A1B4] after:to-[#4BE191] after:rounded-full"
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
                       }`}
                     >
                       {link.name}
+                      {hasChildren && (
+                        <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                      )}
                     </Link>
+
+                    {/* Desktop Hover Dropdown Menu */}
+                    {hasChildren && (
+                      <div className="absolute top-full left-0 pt-2 w-56 invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out z-50">
+                        <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 p-2 flex flex-col gap-1">
+                          {link.children.map((child) => {
+                            const isChildActive = pathname === child.href;
+                            return (
+                              <Link
+                                key={child.title}
+                                href={child.href}
+                                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                                  isChildActive
+                                    ? "bg-gray-100 text-gray-900 font-semibold"
+                                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                                }`}
+                              >
+                                {child.title}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -245,19 +303,54 @@ const Header: React.FC = () => {
         <div className="flex-1 overflow-y-auto p-6 space-y-2">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
+            const hasChildren = link.children && link.children.length > 0;
+            const isExpanded = expandedMobileMenu === link.name;
+
             return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`relative block px-4 py-3 text-lg font-medium rounded-lg transition-colors mobile-link ${
-                  isActive
-                    ? "text-gray-900 font-semibold bg-gray-50/80 after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:bg-linear-to-r after:from-[#4A4CE6] after:via-[#34A1B4] after:to-[#4BE191] after:rounded-full"
-                    : "text-gray-700 hover:bg-gray-50"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
+              <div key={link.name} className="mobile-link">
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={link.href}
+                    className={`relative flex-1 px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      isActive
+                        ? "text-gray-900 font-semibold bg-gray-50/80 after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5 after:bg-linear-to-r after:from-[#4A4CE6] after:via-[#34A1B4] after:to-[#4BE191] after:rounded-full"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                  {hasChildren && (
+                    <button
+                      onClick={() => toggleMobileSubmenu(link.name)}
+                      className="p-3 text-gray-500 hover:text-gray-800"
+                      aria-label={`Toggle ${link.name} submenu`}
+                    >
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-200 ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  )}
+                </div>
+
+                {/* Mobile Submenu */}
+                {hasChildren && isExpanded && (
+                  <div className="ml-4 pl-2 border-l-2 border-gray-100 space-y-1 mt-1">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.title}
+                        href={child.href}
+                        className="block px-4 py-2 text-base text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {child.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             );
           })}
 
