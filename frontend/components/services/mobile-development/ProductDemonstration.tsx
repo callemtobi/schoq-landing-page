@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import PhoneBG from "@/public/services/phone-bg.png";
+import PhoneBG from "@/public/services/phone-bg.webp";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -35,7 +35,7 @@ export default function ProductDemonstration() {
   return (
     <section
       ref={containerHeader}
-      className="containerHeader w-full min-h-[80%] py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#f0f9ff] via-[#eef2ff] to-[#ecfdf5] flex items-center justify-center font-sans"
+      className="containerHeader w-full min-h-[80%] py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-[#f0f9ff] via-[#eef2ff] to-[#ecfdf5] flex items-center justify-center font-sans"
     >
       <div className="max-w-6xl w-full mx-auto space-y-10 md:space-y-14 flex flex-col items-center">
         {/* Section Header */}

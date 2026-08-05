@@ -37,7 +37,7 @@ export default function ServicesHero() {
         y: -200,
         opacity: 0,
         duration: 1.2,
-        ease: "bounce.out",
+        ease: "circ.out",
       });
 
       // Button slides in smoothly (no bounce) alongside the text animation finish
@@ -99,10 +99,12 @@ export default function ServicesHero() {
         {
           y: 100,
           opacity: 0,
-          duration: 1.2,
-          ease: "bounce.out",
+          // duration: 1.2,
+          duration: 3,
+          // ease: "bounce.out",
+          ease: "elastic.out",
         },
-        "-=0.6",
+        "-=0.7",
       );
     }, containerRef);
 
@@ -135,7 +137,7 @@ export default function ServicesHero() {
 
         {/* CTA Button (Smooth slide-in without bounce) */}
         <div ref={containerOneButtonRef} className="pt-2">
-          <button className="px-6 py-3.5 text-sm sm:text-base font-medium text-white rounded-md bg-gradient-to-r from-[#5063ed] via-[#488beb] to-[#45d197] shadow-sm hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer">
+          <button className="px-6 py-3.5 text-sm sm:text-base font-medium text-white rounded-md bg-linear-to-r from-[#5063ed] via-[#488beb] to-[#45d197] shadow-sm hover:shadow-md hover:opacity-95 transition-all duration-200 cursor-pointer">
             Start Building a Mobile App
           </button>
         </div>
@@ -144,31 +146,37 @@ export default function ServicesHero() {
       {/* Container-Two: Process Illustration Section */}
       <div
         ref={containerTwoRef}
-        className="w-full max-w-6xl mx-auto mt-16 md:mt-16 overflow-x-auto pb-4 scrollbar-none"
+        className=" w-full max-w-6xl mx-auto mt-8 md:mt-16 px-4 py-6"
       >
-        <div className="min-w-[850px] relative flex items-center justify-center gap-6 py-8 px-4">
+        <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-6 py-8 px-4 w-full">
           {/* 1. Dashed Wireframe SVG */}
-          <div ref={dashedWireframeRef} className="relative z-10 shrink-0">
+          <div
+            ref={dashedWireframeRef}
+            className="relative z-10 shrink-0 w-fit max-w-xs md:max-w-none flex justify-center"
+          >
             <DashedWireframeGrouped />
           </div>
 
-          {/* 2. Curved Line SVG */}
+          {/* 2. Curved Line SVG (Hidden on mobile as curved lines break stacked layouts) */}
           <div
             ref={curvedLineRef}
-            className="absolute bottom-25 inset-0 z-0 flex items-center justify-center pointer-events-none"
+            className="hidden md:flex absolute bottom-25 inset-0 z-0 items-center justify-center pointer-events-none"
           >
             <CurvedLine />
           </div>
 
-          {/* 3. Double Arrow Icons SVG */}
-          <div ref={doubleArrowsRef} className="relative z-10 shrink-0 px-1">
+          {/* 3. Double Arrow Icons SVG (Rotates down on mobile) */}
+          <div
+            ref={doubleArrowsRef}
+            className="relative z-10 shrink-0 px-1 rotate-90 md:rotate-0"
+          >
             <DoubleArrowIcons />
           </div>
 
           {/* 4. Mockups / Wireframe Group */}
           <div
             ref={wireframeGroupRef}
-            className="relative z-10 shrink-0 flex items-center gap-3"
+            className="relative z-10 flex flex-wrap md:flex-nowrap justify-center items-center gap-3"
           >
             <MobileWireframePurple />
             <MobileWireframeGreen />

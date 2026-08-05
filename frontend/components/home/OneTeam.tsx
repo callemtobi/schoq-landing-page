@@ -72,33 +72,24 @@ const OneTeam: React.FC = () => {
         scrollTrigger: {
           trigger: ".header-trigger",
           start: "top 80%",
-          end: "bottom 80%",
+          end: "bottom 60%",
           scrub: 1,
+          // markers: true,
         },
       });
 
-      headerTimeline.from(".reveal-text", {
-        y: "100%",
+      headerTimeline.from(".oneTeam-header", {
+        y: "30%",
         duration: 0.4,
         ease: "power4.out",
       });
-      // .from(
-      //   ".reveal-btn",
-      //   {
-      //     y: "110%",
-      //     duration: 0.5,
-      //     ease: "power3.out",
-      //   },
-      //   "-=0.3",
-      // );
 
       // ---- Service Cards - One-by-One from Below (view trigger only) ----
       const servicesTL = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-section",
-          start: "top 85%",
+          start: "top 80%",
           end: "bottom 20%",
-          // markers: true,
           toggleActions: "play none play reverse",
         },
       });
@@ -119,6 +110,7 @@ const OneTeam: React.FC = () => {
         opacity: 1,
         scale: 1,
         duration: 0.2,
+        delay: 0.3,
         stagger: 0.12,
         ease: "power3.out",
         clearProps: "transform,opacity",

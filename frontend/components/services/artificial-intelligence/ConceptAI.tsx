@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import ConceptAIImage from "@/public/services/ConceptAI.png";
+import ConceptAIImage from "@/public/services/ConceptAI.webp";
 
 export default function ConceptAI() {
   return (

@@ -9,7 +9,7 @@ import Frame120 from "@/public/about/Frame 120.svg";
 import Adnan from "@/public/about/adnan.svg";
 import Qasim from "@/public/about/qasim.svg";
 import Ubaid from "@/public/about/ubaid.svg";
-import BgImage from "@/public/about/about-bg-image.jpg";
+import BgImage from "@/public/about/about-bg-image.webp";
 
 // Register GSAP plugin
 if (typeof window !== "undefined") {

@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import HeroImg from "@/public/services/Ai-bg.png";
+import HeroImg from "@/public/services/Ai-bg.webp";
 
 export default function AIHeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);

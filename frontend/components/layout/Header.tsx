@@ -165,9 +165,10 @@ const Header: React.FC = () => {
     <>
       <header
         ref={headerRef}
-        className="absolute inset-x-0 top-0 z-50 w-full bg-transparent"
+        // className="absolute inset-x-0 top-0 z-50 w-fit mx-auto bg-transparent border"
+        className="absolute inset-x-0 top-4 z-50 w-fit mx-auto bg-white/5 backdrop-blur-md border-white/20 shadow-sm transition-all rounded-lg"
       >
-        <div className="w-fit mx-auto rounded-lg px-6 py-3 md:px-12 lg:px-10">
+        <div className="w-fit mx-auto rounded-lg px-6 py-3 md:px-12 lg:px-5">
           <div className="max-w-7xl mx-auto flex gap-10 items-center justify-between">
             <div ref={logoRef}>
               <Link
@@ -184,8 +185,12 @@ const Header: React.FC = () => {
             >
               {NAV_LINKS.map((link) => {
                 const isActive =
-                  pathname === link.href ||
-                  pathname.startsWith(`${link.href}/`);
+                  (link.href !== "#" &&
+                    (pathname === link.href ||
+                      pathname.startsWith(`${link.href}/`))) ||
+                  (link.name === "Services" &&
+                    pathname.startsWith("/services"));
+
                 const hasChildren = link.children && link.children.length > 0;
 
                 return (
@@ -198,16 +203,18 @@ const Header: React.FC = () => {
                           : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
                       }`}
                     >
-                      {link.name}
+                      <span className="relative inline-block">
+                        {link.name}
+                        {isActive && (
+                          <div className="absolute -bottom-1 left-0 right-0">
+                            <HeaderBorderStyle className="w-full h-1.5" />
+                          </div>
+                        )}
+                      </span>
                       {hasChildren && (
                         <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                       )}
                     </Link>
-                    {isActive && (
-                      <div className="absolute bottom-1 left-4 right-3">
-                        <HeaderBorderStyle />
-                      </div>
-                    )}
 
                     {/* Desktop Hover Dropdown Menu */}
                     {hasChildren && (

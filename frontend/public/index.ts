@@ -1,1 +1,1 @@
-export { default as heroBgImage } from "./bg-image.png";
+export { default as heroBgImage } from "./bg-image.webp";
