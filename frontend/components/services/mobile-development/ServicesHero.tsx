@@ -34,23 +34,20 @@ export default function ServicesHero() {
 
       // Text elements slide from above with a bounce
       tlOne.from(textHeaderRef.current, {
-        y: -200,
+        y: -100,
         opacity: 0,
         duration: 1.2,
         ease: "circ.out",
       });
-
-      // Button slides in smoothly (no bounce) alongside the text animation finish
       tlOne.from(
         containerOneButtonRef.current,
         {
-          // y: -120,
+          yPercent: -120,
           opacity: 0,
-          delay: 0.8,
-          duration: 0.8,
+          duration: 1.2,
           ease: "power2.out",
         },
-        "-=0.8", // Starts slightly before text finish for a fluid feel
+        "<",
       );
 
       // ----------------------------------------------------

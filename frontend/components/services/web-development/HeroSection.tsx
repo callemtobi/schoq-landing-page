@@ -22,7 +22,7 @@ export default function SectionMain() {
     () => {
       const tlOne = gsap.timeline();
       tlOne.from(textHeaderRef.current, {
-        y: -200,
+        y: -100,
         opacity: 0,
         duration: 1.2,
         ease: "circ.out",
@@ -30,11 +30,12 @@ export default function SectionMain() {
       tlOne.from(
         containerOneButtonRef.current,
         {
+          yPercent: -120,
           opacity: 0,
-          duration: 0.8,
+          duration: 1.2,
           ease: "power2.out",
         },
-        "-=0.8",
+        "<",
       );
 
       // ----------------------------------------------------

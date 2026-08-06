@@ -47,7 +47,7 @@ export default function ProductDemonstration() {
 
         {/* Image Frame Container */}
         <div className="w-full lg:w-3/4 relative p-2 sm:p-4 md:p-6  rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-slate-900 bg-slate-900 shadow-2xl overflow-hidden group">
-          <div className="relative w-full  sm:aspect-video ">
+          <div className="relative w-full aspect-video ">
             <Image
               src={PhoneBG}
               alt="Product Demonstration Mockup Showcase"
