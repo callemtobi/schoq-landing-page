@@ -1,0 +1,26 @@
+{
+    "HomePage": {
+        "titleOne": "AUFHÖREN ZU REDEN.",
+        "titleTwo": "ANFANGEN ZU BAUEN.",
+        "description": "Wir verbinden Schweizer Präzision mit tiefgreifender technischer Expertise, um erstklassige Softwarelösungen für ambitionierte Führungskräfte zu entwerfen, zu gestalten und zu entwickeln.",
+        "buttonDiscuss": "Besprechen Sie Ihr Projekt",
+        "tags": [
+            "Strategie",
+            "Code",
+            "Nutzererfahrung",
+            "Optimierung",
+            "Qualität"
+        ],
+        "scroll": "NACH UNTEN SCROLLEN"
+    },
+    "Header": {
+        "services": "Leistungen",
+        "projects": "Projekte",
+        "about": "Über uns",
+        "contact": "Kontakt",
+        "startProject": "Projekt starten",
+        "webDevelopment": "Webentwicklung",
+        "mobileDevelopment": "Mobile Entwicklung",
+        "artificialIntelligence": "Künstliche Intelligenz"
+    }
+}

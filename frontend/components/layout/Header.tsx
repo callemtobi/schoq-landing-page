@@ -8,38 +8,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { HeaderBorderStyle } from "../icons/Icons";
 
-export const NAV_LINKS = [
-  {
-    name: "Services",
-    href: "#",
-    children: [
-      {
-        title: "Web Development",
-        href: "/services/web-development",
-      },
-      {
-        title: "Mobile Development",
-        href: "/services/mobile-development",
-      },
-      {
-        title: "Artificial Intelligence",
-        href: "/services/artificial-intelligence",
-      },
-    ],
-  },
-  {
-    name: "Projects",
-    href: "/projects",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Contact Us",
-    href: "/contact",
-  },
-];
+// Next-intl imports
+import LanguageSwitcher from "./LanguageSwitch";
+import { useTranslations } from "next-intl";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -55,8 +26,59 @@ const Header: React.FC = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const t = useTranslations("Header");
+
+  // const NAV_LINKS = [
+  //   {
+  //     name: "Services",
+  //     href: "#",
+  //     children: [
+  //       {
+  //         title: "Web Development",
+  //         href: "/services/web-development",
+  //       },
+  //       {
+  //         title: "Mobile Development",
+  //         href: "/services/mobile-development",
+  //       },
+  //       {
+  //         title: "Artificial Intelligence",
+  //         href: "/services/artificial-intelligence",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Projects",
+  //     href: "/projects",
+  //   },
+  //   {
+  //     name: "About",
+  //     href: "/about",
+  //   },
+  //   {
+  //     name: "Contact Us",
+  //     href: "/contact",
+  //   },
+  // ];
+
+  const NAV_LINKS = [
+    {
+      name: t("services"),
+      href: "#",
+      children: [
+        { title: t("webDevelopment"), href: "/services/web-development" },
+        { title: t("mobileDevelopment"), href: "/services/mobile-development" },
+        {
+          title: t("artificialIntelligence"),
+          href: "/services/artificial-intelligence",
+        },
+      ],
+    },
+    { name: t("projects"), href: "/projects" },
+    { name: t("about"), href: "/about" },
+    { name: t("contact"), href: "/contact" },
+  ];
 
   useGSAP(
     () => {
@@ -247,17 +269,8 @@ const Header: React.FC = () => {
             <span className="text-gray-300 hidden lg:block">|</span>
 
             <div className="flex items-center space-x-4">
-              <div
-                ref={languageRef}
-                className="hidden sm:flex items-center space-x-1 text-sm font-medium text-gray-600 shadow-[inset_0_1px_8px_rgba(0,0,0,0.15)] px-3 py-1.5 rounded-lg backdrop-blur-sm"
-              >
-                <button className="hover:text-gray-900 transition-colors">
-                  DE
-                </button>
-                <span className="text-gray-400">/</span>
-                <button className="hover:text-gray-900 transition-colors">
-                  EN
-                </button>
+              <div ref={languageRef}>
+                <LanguageSwitcher />
               </div>
 
               <div ref={ctaRef}>

@@ -1,0 +1,26 @@
+{
+    "HomePage": {
+        "titleOne": "STOP TALKING.",
+        "titleTwo": "START BUILDING.",
+        "description": "We combine Swiss precision with deep technical expertise to architect, design, and engineer world-class software solutions for ambitious leaders.",
+        "buttonDiscuss": "Let's Discuss Your Project",
+        "tags": [
+            "Strategy",
+            "Code",
+            "Human Experience",
+            "Optimization",
+            "Quality"
+        ],
+        "scroll": "SCROLL TO BUILD"
+    },
+    "Header": {
+        "services": "Services",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact Us",
+        "startProject": "Start a Project",
+        "webDevelopment": "Web Development",
+        "mobileDevelopment": "Mobile Development",
+        "artificialIntelligence": "Artificial Intelligence"
+    }
+}

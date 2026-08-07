@@ -5,21 +5,20 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useMessages } from "next-intl";
 import { heroBgImage } from "@/public";
+import { useTranslations } from "next-intl";
 
-const TAGS = [
-  "Strategy",
-  "Code",
-  "Human Experience",
-  "Optimization",
-  "Quality",
-];
 const REVEAL_DURATION = 2;
 const REVEAL_DELAY = 1;
 const REVEAL_EASE = "power3.inOut";
 
 const Main: React.FC = () => {
   const container = useRef(null);
+  const messages = useMessages();
+
+  const t = useTranslations("HomePage");
+  const TAGS = t.raw("tags") as string[];
 
   useGSAP(
     () => {
@@ -129,15 +128,13 @@ const Main: React.FC = () => {
           {/* Gradient Hero Box */}
           <div className="main-container m-main-container flex-1 bg-linear-to-r from-[#4A4CE6] via-[#34A1B4] to-[#4BE191] p-6 md:p-8 lg:p-6 xl:p-10 2xl:p-12 rounded max-w-4xl mx-auto lg:mx-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-bold tracking-tight leading-[1.05] text-white text-center lg:text-left">
-              STOP TALKING.
+              {t("titleOne")}
               <br />
-              START BUILDING.
+              {t("titleTwo")}
             </h1>
 
             <p className="mt-4 max-w-2xl text-sm sm:text-base md:text-lg lg:text-sm xl:text-base 2xl:text-xl text-white leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
-              We combine Swiss precision with deep technical expertise to
-              architect, design, and engineer world-class software solutions for
-              ambitious leaders.
+              {t("description")}
             </p>
 
             <div className="mt-6 lg:mt-4 xl:mt-6 2xl:mt-8 flex justify-center lg:justify-start">
@@ -145,7 +142,7 @@ const Main: React.FC = () => {
                 href="#"
                 className="inline-block bg-transparent text-white text-base lg:text-sm xl:text-base 2xl:text-lg font-medium border border-white/20 px-6 py-2.5 lg:px-5 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3.5 rounded transition-colors shadow-lg hover:shadow-xl"
               >
-                Let&apos;s Discuss Your Project
+                {t("buttonDiscuss")}
               </Link>
             </div>
           </div>
@@ -180,7 +177,7 @@ const Main: React.FC = () => {
       {/* Scroll Indicator */}
       <div className="flex justify-center items-center pb-8 md:pb-12 mt-8">
         <div className="flex flex-col items-center gap-2 text-gray-400 text-xs sm:text-sm lg:text-[10px] xl:text-xs 2xl:text-sm font-medium tracking-widest uppercase animate-bounce">
-          <span className="">SCROLL TO BUILD</span>
+          <span className="">{t("scroll")}</span>
           <ChevronDown className="w-4 h-4 lg:w-3 lg:h-3 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5" />
         </div>
       </div>
