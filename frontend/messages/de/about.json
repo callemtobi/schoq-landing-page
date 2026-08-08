@@ -1,0 +1,34 @@
+{
+    "About.Page": {
+        "description": "Haben Sie eine Herausforderung, die es zu lösen lohnt?",
+        "buttonText": "Projekt starten"
+    },
+    "About.Section1": {
+        "humanThinking": "MENSCHLICHES\nDENKEN",
+        "aboutSchoq": "ÜBER SCHOQ",
+        "mainHeading": {
+            "part1": "TECHNOLOGIE SOLLTE KLAR SEIN–",
+            "part2": "SELBST WENN DIE HERAUSFORDERUNG KOMPLEX IST."
+        },
+        "description": "Schoq vereint Produktdenken, nutzerzentriertes Design und Software-Engineering, um digitale Systeme zu schaffen, die auf reale Unternehmensbedürfnisse zugeschnitten sind.",
+        "engineeredDelivery": "PREZISE\nUMSETZUNG"
+    },
+    "About.Section2": {
+        "heading": "EIN TECHNOLOGIEPARTNER, DER AUF KLARHEIT, ZUSAMMENARBEIT UND UMSETZUNG AUFBAUT.",
+        "description": "Schoq wurde gegründet, um anspruchsvolle digitale Technologie zugänglicher, praktischer und nützlicher zu machen. Wir arbeiten mit Unternehmen, Gründern und Organisationen zusammen, um Ideen und komplexe Anforderungen in Produkte zu verwandeln, die gestartet, gewartet und skaliert werden können.",
+        "team": [
+            {
+                "role": "GESCHÄFTSFÜHRER",
+                "name": "ADNAN JAVED"
+            },
+            {
+                "role": "CHIEF EXECUTIVE OFFICER",
+                "name": "M. QASIM"
+            },
+            {
+                "role": "DIREKTOR",
+                "name": "UBAID FAROOQ"
+            }
+        ]
+    }
+}

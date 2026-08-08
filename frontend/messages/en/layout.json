@@ -1,0 +1,28 @@
+{
+    "Header": {
+        "services": "Services",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact Us",
+        "startProject": "Start a Project",
+        "webDevelopment": "Web Development",
+        "mobileDevelopment": "Mobile Development",
+        "artificialIntelligence": "Artificial Intelligence"
+    },
+    "FooterMessage": {
+        "quote": "Great technology is not defined by complexity. It is defined by what it enables."
+    },
+    "Footer": {
+        "brand": "SCHOQ",
+        "description": "Schoq IT Solutions is a full-service digital company specializing in web and app development, UI/UX design, and AI-powered applications. We empower businesses through innovation and seamless user experiences.",
+        "quickLinksHeading": "Quick Links",
+        "links": {
+            "home": "Home",
+            "aboutUs": "About Us",
+            "contactUs": "Contact Us",
+            "imprint": "Imprint"
+        },
+        "contactHeading": "Contact Us",
+        "copyright": "© 2025 Schoq IT Solutions. All rights reserved"
+    }
+}

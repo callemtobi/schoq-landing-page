@@ -1,0 +1,100 @@
+{
+    "Home.Main": {
+        "titleOne": "STOP TALKING.",
+        "titleTwo": "START BUILDING.",
+        "description": "We combine Swiss precision with deep technical expertise to architect, design, and engineer world-class software solutions for ambitious leaders.",
+        "buttonDiscuss": "Let's Discuss Your Project",
+        "tags": [
+            "Strategy",
+            "Code",
+            "Human Experience",
+            "Optimization",
+            "Quality"
+        ],
+        "scroll": "SCROLL TO BUILD"
+    },
+    "Home.Ideas": {
+        "titleLine1": "IDEAS BROUGHT",
+        "titleLine2": "TO LIFE",
+        "description": "Explore selected platforms, applications and digital experiences designed and developed by Schoq.",
+        "buttonStartProject": "Start a Project",
+        "aria": {
+            "previousSlide": "Previous slide",
+            "nextSlide": "Next slide",
+            "goToSlide": "Go to slide {index}"
+        },
+        "projects": {
+            "myAnza": "MyAnza",
+            "workforceManagement": "Workforce Management System for HR"
+        },
+        "Home.Launch": {
+            "titleLine1": "LAUNCH",
+            "titleLine2": "YOUR MVP IN",
+            "titleLine3": "6-8 WEEKS.",
+            "subtitle": "Design • Development • Testing • Launch",
+            "description": "All under one roof. No noise, just engineering excellence.",
+            "noLabel": "NO",
+            "painPoints": [
+                "Freelancer chaos",
+                "Agency chains",
+                "Friction"
+            ],
+            "timeline": {
+                "weekPrefix": "Week",
+                "steps": {
+                    "brief": "Brief",
+                    "prototype": "Prototype",
+                    "interface": "Interface",
+                    "development": "Development",
+                    "testing": "Testing",
+                    "launch": "Launch"
+                }
+            },
+            "footerTag": "8 WEEKS TO MVP"
+        },
+        "Home.OneTeam": {
+            "header": {
+                "title": "ONE TEAM. COMPLETE PRODUCT EXPERTISE.",
+                "description": "From product strategy and UX to web, mobile, AI and cloud, Schoq brings the expertise required to design, build and scale digital products.",
+                "cta": "Start a Project"
+            },
+            "services": [
+                {
+                    "id": "custom-software",
+                    "title": "Custom Software",
+                    "description": "Tailored enterprise software solutions and custom system development for unique business requirements."
+                },
+                {
+                    "id": "ai-machine-learning",
+                    "title": "AI & Machine Learning",
+                    "description": "Advanced AI and machine learning solutions to automate, predict, and optimize complex business processes."
+                },
+                {
+                    "id": "web-development",
+                    "title": "Web Development",
+                    "description": "From business websites to custom web applications, delivering fast, reliable, and user-focused digital experiences."
+                },
+                {
+                    "id": "mobile-apps",
+                    "title": "Mobile Apps",
+                    "description": "Native and cross-platform mobile app development tailored for seamless user engagement."
+                },
+                {
+                    "id": "ui-ux-design",
+                    "title": "UI/UX Design",
+                    "description": "User-centered interface design and intuitive user experience workflows for modern web and mobile applications."
+                },
+                {
+                    "id": "saas-development",
+                    "title": "SaaS Development",
+                    "description": "Build and scale secure, multi-tenant software-as-a-service platforms globally."
+                },
+                {
+                    "id": "devops-cloud-infrastructure",
+                    "title": "DevOps & Cloud Infrastructure",
+                    "description": "Scalable cloud architecture, CI/CD pipelines, and DevOps solutions for high availability and performance."
+                }
+            ]
+        }
+    }
+}

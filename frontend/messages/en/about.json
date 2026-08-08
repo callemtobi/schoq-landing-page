@@ -1,0 +1,34 @@
+{
+    "About.Page": {
+        "description": "Have a challenge worth solving?",
+        "buttonText": "Start a Project"
+    },
+    "About.Section1": {
+        "humanThinking": "HUMAN\nTHINKING",
+        "aboutSchoq": "ABOUT SCHOQ",
+        "mainHeading": {
+            "part1": "TECHNOLOGY SHOULD FEEL CLEAR-",
+            "part2": "EVEN WHEN THE CHALLENGE IS COMPLEX."
+        },
+        "description": "Schoq brings product thinking, human-centred design and software engineering together to create digital systems built around real business needs.",
+        "engineeredDelivery": "ENGINEERED\nDELIVERY"
+    },
+    "About.Section2": {
+        "heading": "A TECHNOLOGY PARTNER BUILT AROUND CLARITY, COLLABORATION AND EXECUTION.",
+        "description": "Schoq was created to make sophisticated digital technology more accessible, practical and useful. We work with businesses, founders and organisations to turn ideas and complex requirements into products that can be launched, maintained and scaled.",
+        "team": [
+            {
+                "role": "MANAGING DIRECTOR",
+                "name": "ADNAN JAVED"
+            },
+            {
+                "role": "CHIEF EXECUTIVE OFFICER",
+                "name": "M. QASIM"
+            },
+            {
+                "role": "DIRECTOR",
+                "name": "UBAID FAROOQ"
+            }
+        ]
+    }
+}

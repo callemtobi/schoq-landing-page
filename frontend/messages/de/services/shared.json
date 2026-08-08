@@ -4,10 +4,10 @@
         "description": "{mainDesc}"
     },
     "Services.Shared.Three": {
-        "category": "How We Work",
-        "title": "Flexible Engagement"
+        "category": "Wie wir arbeiten",
+        "title": "Flexible Zusammenarbeit"
     },
     "Services.Shared.Five": {
-        "category": "Connected Expertise"
+        "category": "Vernetzte Expertise"
     }
 }

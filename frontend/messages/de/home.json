@@ -1,0 +1,100 @@
+{
+    "Home.Main": {
+        "titleOne": "AUFHÖREN ZU REDEN.",
+        "titleTwo": "ANFANGEN ZU BAUEN.",
+        "description": "Wir verbinden Schweizer Präzision mit tiefgreifender technischer Expertise, um erstklassige Softwarelösungen für ambitionierte Führungskräfte zu entwerfen, zu gestalten und zu entwickeln.",
+        "buttonDiscuss": "Besprechen Sie Ihr Projekt",
+        "tags": [
+            "Strategie",
+            "Code",
+            "Nutzererfahrung",
+            "Optimierung",
+            "Qualität"
+        ],
+        "scroll": "NACH UNTEN SCROLLEN"
+    },
+    "Home.Ideas": {
+        "titleLine1": "IDEEN ZUM LEBEN",
+        "titleLine2": "ERWECKT",
+        "description": "Entdecken Sie ausgewählte Plattformen, Anwendungen und digitale Erlebnisse, die von Schoq konzipiert und entwickelt wurden.",
+        "buttonStartProject": "Projekt starten",
+        "aria": {
+            "previousSlide": "Vorherige Folie",
+            "nextSlide": "Nächste Folie",
+            "goToSlide": "Zu Folie {index} gehen"
+        },
+        "projects": {
+            "myAnza": "MyAnza",
+            "workforceManagement": "Personalverwaltungssystem für HR"
+        }
+    },
+    "Home.Launch": {
+        "titleLine1": "LAUNCHEN SIE",
+        "titleLine2": "IHR MVP IN",
+        "titleLine3": "6-8 WOCHEN.",
+        "subtitle": "Design • Entwicklung • Testing • Launch",
+        "description": "Alles aus einer Hand. Kein Lärm, nur erstklassige Softwareentwicklung.",
+        "noLabel": "KEIN",
+        "painPoints": [
+            "Freelancer-Chaos",
+            "Ketten von Agenturen",
+            "Reibungsverluste"
+        ],
+        "timeline": {
+            "weekPrefix": "Woche",
+            "steps": {
+                "brief": "Briefing",
+                "prototype": "Prototyp",
+                "interface": "Interface",
+                "development": "Entwicklung",
+                "testing": "Testing",
+                "launch": "Launch"
+            }
+        },
+        "footerTag": "8 WOCHEN ZUM MVP"
+    },
+    "Home.OneTeam": {
+        "header": {
+            "title": "EIN TEAM. VOLLSTÄNDIGE PRODUKT-EXPERTISE.",
+            "description": "Von der Produktstrategie und UX bis hin zu Web, Mobile, KI und Cloud – Schoq bringt die nötige Expertise mit, um digitale Produkte zu entwerfen, zu entwickeln und zu skalieren.",
+            "cta": "Projekt starten"
+        },
+        "services": [
+            {
+                "id": "custom-software",
+                "title": "Individualsoftware",
+                "description": "Maßgeschneiderte Enterprise-Softwarelösungen und individuelle Systementwicklung für einzigartige Unternehmensanforderungen."
+            },
+            {
+                "id": "ai-machine-learning",
+                "title": "KI & Maschinelles Lernen",
+                "description": "Fortschrittliche KI- und Machine-Learning-Lösungen zur Automatisierung, Vorhersage und Optimierung komplexer Geschäftsprozesse."
+            },
+            {
+                "id": "web-development",
+                "title": "Webentwicklung",
+                "description": "Von Unternehmens-Websites bis hin zu maßgeschneiderten Webanwendungen – für schnelle, zuverlässige und nutzerzentrierte digitale Erlebnisse."
+            },
+            {
+                "id": "mobile-apps",
+                "title": "Mobile Apps",
+                "description": "Native und plattformübergreifende Entwicklung mobiler Apps, zugeschnitten auf nahtlose Nutzerbindung."
+            },
+            {
+                "id": "ui-ux-design",
+                "title": "UI/UX-Design",
+                "description": "Nutzerzentriertes Interface-Design und intuitive UX-Workflows für moderne Web- und Mobilanwendungen."
+            },
+            {
+                "id": "saas-development",
+                "title": "SaaS-Entwicklung",
+                "description": "Entwicklung und globale Skalierung sicherer, mandantenfähiger Software-as-a-Service-Plattformen."
+            },
+            {
+                "id": "devops-cloud-infrastructure",
+                "title": "DevOps & Cloud-Infrastruktur",
+                "description": "Skalierbare Cloud-Architektur, CI/CD-Pipelines und DevOps-Lösungen für hohe Verfügbarkeit und Performance."
+            }
+        ]
+    }
+}
