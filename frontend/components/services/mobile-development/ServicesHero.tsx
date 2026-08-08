@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -10,6 +10,7 @@ import {
   MobileWireframeGreen,
   MobileWireframePurple,
 } from "@/components/icons/Icons";
+import { useGSAP } from "@gsap/react";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -25,93 +26,96 @@ export default function ServicesHero() {
   const doubleArrowsRef = useRef<HTMLDivElement>(null);
   const wireframeGroupRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // ----------------------------------------------------
-      // 1st Timeline: Container-One
-      // ----------------------------------------------------
-      const tlOne = gsap.timeline();
+  useGSAP(
+    () => {
+      const ctx = gsap.context(() => {
+        // ----------------------------------------------------
+        // 1st Timeline: Container-One
+        // ----------------------------------------------------
+        const tlOne = gsap.timeline();
 
-      // Text elements slide from above with a bounce
-      tlOne.from(textHeaderRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "circ.out",
-      });
-      tlOne.from(
-        containerOneButtonRef.current,
-        {
-          yPercent: -120,
+        // Text elements slide from above with a bounce
+        tlOne.from(textHeaderRef.current, {
+          y: -100,
           opacity: 0,
           duration: 1.2,
-          ease: "power2.out",
-        },
-        "<",
-      );
+          ease: "circ.out",
+        });
+        tlOne.from(
+          containerOneButtonRef.current,
+          {
+            yPercent: -120,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          "<",
+        );
 
-      // ----------------------------------------------------
-      // 2nd Timeline: Container-Two (Triggers at 30% into viewport)
-      // ----------------------------------------------------
-      const tlTwo = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerTwoRef.current,
-          start: "top 70%", // Triggers when top of containerTwo is 30% above bottom of viewport
-          toggleActions: "play none none none",
-        },
-      });
+        // ----------------------------------------------------
+        // 2nd Timeline: Container-Two (Triggers at 30% into viewport)
+        // ----------------------------------------------------
+        const tlTwo = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerTwoRef.current,
+            start: "top 70%", // Triggers when top of containerTwo is 30% above bottom of viewport
+            toggleActions: "play none none none",
+          },
+        });
 
-      // a) Dashed Wireframe fades in
-      tlTwo.from(dashedWireframeRef.current, {
-        opacity: 0,
-        duration: 1.0,
-        ease: "power2.inOut",
-      });
-
-      // b) Double Arrows fade in
-      tlTwo.from(
-        doubleArrowsRef.current,
-        {
+        // a) Dashed Wireframe fades in
+        tlTwo.from(dashedWireframeRef.current, {
           opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.3",
-      );
+          duration: 1.0,
+          ease: "power2.inOut",
+        });
 
-      // c) Curved Line fades in
-      tlTwo.from(
-        curvedLineRef.current,
-        {
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "-=0.4",
-      );
+        // b) Double Arrows fade in
+        tlTwo.from(
+          doubleArrowsRef.current,
+          {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.3",
+        );
 
-      // d) Mockups appear from below with fade + slide-in + bounce
-      tlTwo.from(
-        wireframeGroupRef.current,
-        {
-          y: 100,
-          opacity: 0,
-          // duration: 1.2,
-          duration: 3,
-          // ease: "bounce.out",
-          ease: "elastic.out",
-        },
-        "-=0.7",
-      );
-    }, containerRef);
+        // c) Curved Line fades in
+        tlTwo.from(
+          curvedLineRef.current,
+          {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "-=0.4",
+        );
 
-    return () => ctx.revert();
-  }, []);
+        // d) Mockups appear from below with fade + slide-in + bounce
+        tlTwo.from(
+          wireframeGroupRef.current,
+          {
+            y: 100,
+            opacity: 0,
+            // duration: 1.2,
+            duration: 3,
+            // ease: "bounce.out",
+            ease: "elastic.out",
+          },
+          "-=0.7",
+        );
+      }, containerRef);
+
+      return () => ctx.revert();
+    },
+    { scope: containerRef },
+  );
 
   return (
     <main
       ref={containerRef}
-      className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center px-4 py-16 md:py-24 font-sans selection:bg-purple-100"
+      className="min-h-screen bg-white text-slate-900 flex flex-col items-center px-4 justify-start pt-24 pb-16 md:py-24 font-sans selection:bg-purple-100"
     >
       {/* Container-One: Text Header Section */}
       <div className="max-w-4xl mx-auto text-center space-y-3">

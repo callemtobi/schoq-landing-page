@@ -3,70 +3,74 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Section1() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Create a master timeline linked to scroll
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%", // Triggers when top of section hits 80% of viewport height
-          toggleActions: "play none none reverse",
-        },
-      });
+  useGSAP(
+    () => {
+      const ctx = gsap.context(() => {
+        // Create a master timeline linked to scroll
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%", // Triggers when top of section hits 80% of viewport height
+            toggleActions: "play none none reverse",
+          },
+        });
 
-      // 1st: "about-schoq-1" slide-fades in from the right with "about-shoq-content" following it
-      tl.from(".about-schoq-1", {
-        x: 60,
-        opacity: 0,
-        duration: 2,
-        ease: "power3.out",
-      }).from(
-        ".about-shoq-content",
-        {
-          x: 30,
+        // 1st: "about-schoq-1" slide-fades in from the right with "about-shoq-content" following it
+        tl.from(".about-schoq-1", {
+          x: 60,
           opacity: 0,
-          duration: 1.5,
+          duration: 2,
           ease: "power3.out",
-        },
-        "-=2", // Millisecond delay relative to previous animation start
-      );
+        }).from(
+          ".about-shoq-content",
+          {
+            x: 30,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.out",
+          },
+          "-=2", // Millisecond delay relative to previous animation start
+        );
 
-      // 2nd: "human-thinking-2" slides out from behind the vertical line (revealing rightwards)
-      tl.from(
-        ".human-thinking-2",
-        {
-          x: 80,
-          opacity: 0,
-          clipPath: "inset(0% 0% 0% 100%)", // Fully hidden from the right edge
-          duration: 1,
-          ease: "power3.out",
-        },
-        "-=0.3",
-      );
+        // 2nd: "human-thinking-2" slides out from behind the vertical line (revealing rightwards)
+        tl.from(
+          ".human-thinking-2",
+          {
+            x: 80,
+            opacity: 0,
+            clipPath: "inset(0% 0% 0% 100%)", // Fully hidden from the right edge
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.3",
+        );
 
-      // 3rd: "delivery-3" slides out from behind the vertical line (revealing leftwards)
-      tl.from(
-        ".delivery-3",
-        {
-          x: -80,
-          opacity: 0,
-          clipPath: "inset(0% 100% 0% 0%)", // Fully hidden from the left edge
-          duration: 1,
-          ease: "power3.out",
-        },
-        "-=0.4",
-      );
-    }, containerRef);
+        // 3rd: "delivery-3" slides out from behind the vertical line (revealing leftwards)
+        tl.from(
+          ".delivery-3",
+          {
+            x: -80,
+            opacity: 0,
+            clipPath: "inset(0% 100% 0% 0%)", // Fully hidden from the left edge
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        );
+      }, containerRef);
 
-    // Clean up GSAP animations on unmount
-    return () => ctx.revert();
-  }, []);
+      // Clean up GSAP animations on unmount
+      return () => ctx.revert();
+    },
+    { scope: containerRef },
+  );
 
   return (
     <section

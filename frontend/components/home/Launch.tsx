@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { heroBgImage } from "@/public";
 
+gsap.registerPlugin(ScrollTrigger);
 const Launch: React.FC = () => {
   const container = useRef<HTMLDivElement>(null);
-  gsap.registerPlugin(ScrollTrigger);
 
   const timelineSteps = [
     { week: "1", label: "Brief" },

@@ -55,7 +55,6 @@ const AiServices = () => {
       desc: "Add search, summarisation, recommendations or intelligent assistance to existing products.",
     },
   ];
-  // Section 5
 
   return (
     <main

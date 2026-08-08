@@ -227,10 +227,16 @@ const Ideas: React.FC = () => {
 
   return (
     <section
-      style={{ backgroundImage: `url(${heroBgImage.src})` }}
+      // style={{ backgroundImage: `url(${heroBgImage.src})` }}
       ref={container}
       className="w-full bg-cover bg-center bg-no-repeat px-4 sm:px-6 md:px-12 lg:px-20 py-12 sm:py-16 md:py-24 lg:py-20 overflow-hidden"
     >
+      <Image
+        src={heroBgImage.src}
+        alt="Background Image"
+        fill
+        className="object-cover -z-10"
+      />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="header-one mb-2">
@@ -284,7 +290,7 @@ const Ideas: React.FC = () => {
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw"
-                      priority
+                      priority={index === 0}
                     />
                   </div>
                 </div>

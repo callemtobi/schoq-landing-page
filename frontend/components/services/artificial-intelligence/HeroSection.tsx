@@ -109,7 +109,7 @@ export default function AIHeroSection() {
   return (
     <main
       ref={containerRef}
-      className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center px-4 py-16 md:py-24 font-sans selection:bg-purple-100"
+      className="min-h-screen bg-white text-slate-900 flex flex-col items-center px-4 justify-start pt-24 pb-16 md:py-24 font-sans selection:bg-purple-100"
     >
       {/* Container-One: Text Header Section */}
       <div className="max-w-4xl mx-auto text-center space-y-6">

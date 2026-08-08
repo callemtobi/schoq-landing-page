@@ -58,17 +58,16 @@ export default function ServicesSectionFive({
         {/* Pill-Shaped Cards Grid */}
         <div
           ref={cardContainer}
-          /* Updated px-30 to responsive padding px-4 sm:px-8 lg:px-12 */
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 items-center justify-center max-w-6xl mx-auto px-4 sm:px-8 lg:px-12"
+          className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto px-4 sm:px-8 lg:px-12"
         >
           {expertiseItems.map((item) => (
             <div
               key={item.id}
-              className="flex justify-center items-center w-full"
+              className="flex justify-center items-center w-[calc(50%-0.375rem)] lg:w-auto lg:flex-1 lg:max-w-none"
             >
-              {/* Increased max-w-50 to max-w-xs and removed fixed max width bottleneck */}
-              <div className="group relative w-full max-w-[200px] aspect-4/5 rounded-[90px] p-[1.5px] bg-gradient-to-br from-indigo-200 via-sky-200 to-emerald-200 hover:from-indigo-300 hover:via-sky-300 hover:to-emerald-300 transition-all duration-300 shadow-xs cursor-pointer">
-                {/* Adjusted inner padding from p-6 to p-3 sm:p-5 to give text room */}
+              {/* Card Container */}
+              <div className="group relative w-full max-w-[200px] aspect-4/5 rounded-[90px] p-[1.5px] bg-gradient-to-br from-indigo-200 via-sky-200 to-emerald-200 hover:from-indigo-300 hover:via-sky-300 hover:to-emerald-300 transition-all duration-300 shadow-xs cursor-pointer mx-auto">
+                {/* Inner Content */}
                 <div className="w-full h-full bg-white/60 backdrop-blur-xs rounded-[88.5px] p-3 sm:p-5 flex flex-col items-center justify-center space-y-2 sm:space-y-4 hover:bg-white/90 transition-all duration-300">
                   {/* Arrow Icon */}
                   <div className="text-slate-700 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

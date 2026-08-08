@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="mt-10">
           <p className="text-sm text-gray-500 text-center">
-            © 2025 Schoq IT Solutions. All rights reserved
+            © {new Date().getFullYear()} Schoq IT Solutions. All rights reserved
           </p>
         </div>
       </div>

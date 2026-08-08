@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function ProductDemonstration() {
+  const sectionHeader = useRef(null);
   const containerHeader = useRef(null);
 
   useGSAP(() => {
@@ -24,7 +25,7 @@ export default function ProductDemonstration() {
         opacity: 1,
         duration: 1,
         scrollTrigger: {
-          trigger: containerHeader.current,
+          trigger: sectionHeader.current,
           start: "top 70%",
           toggleActions: "play none none reverse",
         },
@@ -34,10 +35,13 @@ export default function ProductDemonstration() {
 
   return (
     <section
-      ref={containerHeader}
+      ref={sectionHeader}
       className="containerHeader w-full min-h-[80%] py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-[#f0f9ff] via-[#eef2ff] to-[#ecfdf5] flex items-center justify-center font-sans"
     >
-      <div className="max-w-6xl w-full mx-auto space-y-10 md:space-y-14 flex flex-col items-center">
+      <div
+        ref={containerHeader}
+        className="max-w-6xl w-full mx-auto space-y-10 md:space-y-14 flex flex-col items-center"
+      >
         {/* Section Header */}
         <div className=" text-center space-y-2">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase">

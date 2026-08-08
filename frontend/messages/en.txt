@@ -1,0 +1,944 @@
+// ----------------------------------------------------------------------------- Home
+// Main
+{
+  "Main": {
+  "titleOne": "STOP TALKING.",
+  "titleTwo": "START BUILDING.",
+  "description": "We combine Swiss precision with deep technical expertise to architect, design, and engineer world-class software solutions for ambitious leaders.",
+  "buttonDiscuss": "Let's Discuss Your Project",
+  "tags": [
+  "Strategy",
+  "Code",
+  "Human Experience",
+  "Optimization",
+  "Quality"
+  ],
+  "scroll": "SCROLL TO BUILD"
+  }
+}
+{
+"Main": {
+    "titleOne": "AUFHÖREN ZU REDEN.",
+    "titleTwo": "ANFANGEN ZU BAUEN.",
+    "description": "Wir verbinden Schweizer Präzision mit tiefgreifender technischer Expertise, um erstklassige Softwarelösungen für ambitionierte Führungskräfte zu entwerfen, zu gestalten und zu entwickeln.",
+    "buttonDiscuss": "Besprechen Sie Ihr Projekt",
+    "tags": [
+    "Strategie",
+    "Code",
+    "Nutzererfahrung",
+    "Optimierung",
+    "Qualität"
+  ],
+    "scroll": "NACH UNTEN SCROLLEN"
+  }
+}
+
+// Ideas
+{
+  "Ideas": {
+  "titleLine1": "IDEAS BROUGHT",
+  "titleLine2": "TO LIFE",
+  "description": "Explore selected platforms, applications and digital experiences designed and developed by Schoq.",
+  "buttonStartProject": "Start a Project",
+  "aria": {
+  "previousSlide": "Previous slide",
+  "nextSlide": "Next slide",
+  "goToSlide": "Go to slide {index}"
+  },
+  "projects": {
+  "myAnza": "MyAnza",
+  "workforceManagement": "Workforce Management System for HR"
+}
+{
+  "Ideas": {
+  "titleLine1": "IDEEN ZUM LEBEN",
+  "titleLine2": "ERWECKT",
+  "description": "Entdecken Sie ausgewählte Plattformen, Anwendungen und digitale Erlebnisse, die von Schoq konzipiert und entwickelt wurden.",
+  "buttonStartProject": "Projekt starten",
+  "aria": {
+  "previousSlide": "Vorherige Folie",
+  "nextSlide": "Nächste Folie",
+  "goToSlide": "Zu Folie {index} gehen"
+  },
+  "projects": {
+  "myAnza": "MyAnza",
+  "workforceManagement": "Personalverwaltungssystem für HR"
+  }
+}
+// Launch
+{
+  "Launch": {
+    "titleLine1": "LAUNCH",
+    "titleLine2": "YOUR MVP IN",
+    "titleLine3": "6-8 WEEKS.",
+    "subtitle": "Design • Development • Testing • Launch",
+    "description": "All under one roof. No noise, just engineering excellence.",
+    "noLabel": "NO",
+    "painPoints": [
+      "Freelancer chaos",
+      "Agency chains",
+      "Friction"
+    ],
+    "timeline": {
+      "weekPrefix": "Week",
+      "steps": {
+        "brief": "Brief",
+        "prototype": "Prototype",
+        "interface": "Interface",
+        "development": "Development",
+        "testing": "Testing",
+        "launch": "Launch"
+      }
+    },
+    "footerTag": "8 WEEKS TO MVP"
+  }
+}
+{
+  "Launch": {
+    "titleLine1": "LAUNCHEN SIE",
+    "titleLine2": "IHR MVP IN",
+    "titleLine3": "6-8 WOCHEN.",
+    "subtitle": "Design • Entwicklung • Testing • Launch",
+    "description": "Alles aus einer Hand. Kein Lärm, nur erstklassige Softwareentwicklung.",
+    "noLabel": "KEIN",
+    "painPoints": [
+      "Freelancer-Chaos",
+      "Ketten von Agenturen",
+      "Reibungsverluste"
+    ],
+    "timeline": {
+      "weekPrefix": "Woche",
+      "steps": {
+        "brief": "Briefing",
+        "prototype": "Prototyp",
+        "interface": "Interface",
+        "development": "Entwicklung",
+        "testing": "Testing",
+        "launch": "Launch"
+      }
+    },
+    "footerTag": "8 WOCHEN ZUM MVP"
+  }
+}
+// One Team
+{
+  "header": {
+    "title": "ONE TEAM. COMPLETE PRODUCT EXPERTISE.",
+    "description": "From product strategy and UX to web, mobile, AI and cloud, Schoq brings the expertise required to design, build and scale digital products.",
+    "cta": "Start a Project"
+  },
+  "services": [
+    {
+      "id": "custom-software",
+      "title": "Custom Software",
+      "description": "Tailored enterprise software solutions and custom system development for unique business requirements."
+    },
+    {
+      "id": "ai-machine-learning",
+      "title": "AI & Machine Learning",
+      "description": "Advanced AI and machine learning solutions to automate, predict, and optimize complex business processes."
+    },
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "description": "From business websites to custom web applications, delivering fast, reliable, and user-focused digital experiences."
+    },
+    {
+      "id": "mobile-apps",
+      "title": "Mobile Apps",
+      "description": "Native and cross-platform mobile app development tailored for seamless user engagement."
+    },
+    {
+      "id": "ui-ux-design",
+      "title": "UI/UX Design",
+      "description": "User-centered interface design and intuitive user experience workflows for modern web and mobile applications."
+    },
+    {
+      "id": "saas-development",
+      "title": "SaaS Development",
+      "description": "Build and scale secure, multi-tenant software-as-a-service platforms globally."
+    },
+    {
+      "id": "devops-cloud-infrastructure",
+      "title": "DevOps & Cloud Infrastructure",
+      "description": "Scalable cloud architecture, CI/CD pipelines, and DevOps solutions for high availability and performance."
+    }
+  ]
+}
+{
+  "header": {
+    "title": "EIN TEAM. VOLLSTÄNDIGE PRODUKT-EXPERTISE.",
+    "description": "Von der Produktstrategie und UX bis hin zu Web, Mobile, KI und Cloud – Schoq bringt die nötige Expertise mit, um digitale Produkte zu entwerfen, zu entwickeln und zu skalieren.",
+    "cta": "Projekt starten"
+  },
+  "services": [
+    {
+      "id": "custom-software",
+      "title": "Individualsoftware",
+      "description": "Maßgeschneiderte Enterprise-Softwarelösungen und individuelle Systementwicklung für einzigartige Unternehmensanforderungen."
+    },
+    {
+      "id": "ai-machine-learning",
+      "title": "KI & Maschinelles Lernen",
+      "description": "Fortschrittliche KI- und Machine-Learning-Lösungen zur Automatisierung, Vorhersage und Optimierung komplexer Geschäftsprozesse."
+    },
+    {
+      "id": "web-development",
+      "title": "Webentwicklung",
+      "description": "Von Unternehmens-Websites bis hin zu maßgeschneiderten Webanwendungen – für schnelle, zuverlässige und nutzerzentrierte digitale Erlebnisse."
+    },
+    {
+      "id": "mobile-apps",
+      "title": "Mobile Apps",
+      "description": "Native und plattformübergreifende Entwicklung mobiler Apps, zugeschnitten auf nahtlose Nutzerbindung."
+    },
+    {
+      "id": "ui-ux-design",
+      "title": "UI/UX-Design",
+      "description": "Nutzerzentriertes Interface-Design und intuitive UX-Workflows für moderne Web- und Mobilanwendungen."
+    },
+    {
+      "id": "saas-development",
+      "title": "SaaS-Entwicklung",
+      "description": "Entwicklung und globale Skalierung sicherer, mandantenfähiger Software-as-a-Service-Plattformen."
+    },
+    {
+      "id": "devops-cloud-infrastructure",
+      "title": "DevOps & Cloud-Infrastruktur",
+      "description": "Skalierbare Cloud-Architektur, CI/CD-Pipelines und DevOps-Lösungen für hohe Verfügbarkeit und Performance."
+    }
+  ]
+}
+
+
+
+// ----------------------------------------------------------------------------- ABOUT
+// Section1
+{
+  "en": {
+    "humanThinking": "HUMAN\nTHINKING",
+    "aboutSchoq": "ABOUT SCHOQ",
+    "mainHeading": {
+      "part1": "TECHNOLOGY SHOULD FEEL CLEAR-",
+      "part2": "EVEN WHEN THE CHALLENGE IS COMPLEX."
+    },
+    "description": "Schoq brings product thinking, human-centred design and software engineering together to create digital systems built around real business needs.",
+    "engineeredDelivery": "ENGINEERED\nDELIVERY"
+  },
+  "de": {
+    "humanThinking": "MENSCHLICHES\nDENKEN",
+    "aboutSchoq": "ÜBER SCHOQ",
+    "mainHeading": {
+      "part1": "TECHNOLOGIE SOLLTE KLAR SEIN–",
+      "part2": "SELBST WENN DIE HERAUSFORDERUNG KOMPLEX IST."
+    },
+    "description": "Schoq vereint Produktdenken, nutzerzentriertes Design und Software-Engineering, um digitale Systeme zu schaffen, die auf reale Unternehmensbedürfnisse zugeschnitten sind.",
+    "engineeredDelivery": "PREZISE\nUMSETZUNG"
+  }
+}
+// Section2
+{
+  "english": {
+    "heading": "A TECHNOLOGY PARTNER BUILT AROUND CLARITY, COLLABORATION AND EXECUTION.",
+    "description": "Schoq was created to make sophisticated digital technology more accessible, practical and useful. We work with businesses, founders and organisations to turn ideas and complex requirements into products that can be launched, maintained and scaled.",
+    "team": [
+      {
+        "role": "MANAGING DIRECTOR",
+        "name": "ADNAN JAVED"
+      },
+      {
+        "role": "CHIEF EXECUTIVE OFFICER",
+        "name": "M. QASIM"
+      },
+      {
+        "role": "DIRECTOR",
+        "name": "UBAID FAROOQ"
+      }
+    ]
+  },
+  "german": {
+    "heading": "EIN TECHNOLOGIEPARTNER, DER AUF KLARHEIT, ZUSAMMENARBEIT UND UMSETZUNG AUFBAUT.",
+    "description": "Schoq wurde gegründet, um anspruchsvolle digitale Technologie zugänglicher, praktischer und nützlicher zu machen. Wir arbeiten mit Unternehmen, Gründern und Organisationen zusammen, um Ideen und komplexe Anforderungen in Produkte zu verwandeln, die gestartet, gewartet und skaliert werden können.",
+    "team": [
+      {
+        "role": "GESCHÄFTSFÜHRER",
+        "name": "ADNAN JAVED"
+      },
+      {
+        "role": "CHIEF EXECUTIVE OFFICER",
+        "name": "M. QASIM"
+      },
+      {
+        "role": "DIREKTOR",
+        "name": "UBAID FAROOQ"
+      }
+    ]
+  }
+}
+// Page.tsx
+{
+  "english": {
+    "description": "Have a challenge worth solving?",
+    "buttonText": "Start a Project"
+  },
+  "german": {
+    "description": "Haben Sie eine Herausforderung, die es zu lösen lohnt?",
+    "buttonText": "Projekt starten"
+  }
+}
+
+
+// ----------------------------------------------------------------------------- LAYOUT
+// Header
+{
+  "Header": {
+  "services": "Services",
+  "projects": "Projects",
+  "about": "About",
+  "contact": "Contact Us",
+  "startProject": "Start a Project",
+  "webDevelopment": "Web Development",
+  "mobileDevelopment": "Mobile Development",
+  "artificialIntelligence": "Artificial Intelligence"
+  }
+}
+"Header": {
+    "services": "Leistungen",
+    "projects": "Projekte",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "startProject": "Projekt starten",
+    "webDevelopment": "Webentwicklung",
+    "mobileDevelopment": "Mobile Entwicklung",
+    "artificialIntelligence": "Künstliche Intelligenz"
+}
+
+// Footer
+{
+  "english": {
+    "brand": "SCHOQ",
+    "description": "Schoq IT Solutions is a full-service digital company specializing in web and app development, UI/UX design, and AI-powered applications. We empower businesses through innovation and seamless user experiences.",
+    "quickLinksHeading": "Quick Links",
+    "links": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "imprint": "Imprint"
+    },
+    "contactHeading": "Contact Us",
+    "copyright": "© 2025 Schoq IT Solutions. All rights reserved"
+  },
+  "german": {
+    "brand": "SCHOQ",
+    "description": "Schoq IT Solutions ist ein Full-Service-Digitalunternehmen, das auf Web- und App-Entwicklung, UI/UX-Design und KI-gestützte Anwendungen spezialisiert ist. Wir stärken Unternehmen durch Innovation und nahtlose Nutzererlebnisse.",
+    "quickLinksHeading": "Schnelllinks",
+    "links": {
+      "home": "Startseite",
+      "aboutUs": "Über uns",
+      "contactUs": "Kontakt",
+      "imprint": "Impressum"
+    },
+    "contactHeading": "Kontakt",
+    "copyright": "© 2025 Schoq IT Solutions. Alle Rechte vorbehalten"
+  }
+}
+
+// FooterMessage
+{
+  "english": {
+    "quote": "Great technology is not defined by complexity. It is defined by what it enables."
+  },
+  "german": {
+    "quote": "Großartige Technologie definiert sich nicht über Komplexität. Sie definiert sich über das, was sie ermöglicht."
+  }
+}
+
+// ----------------------------------------------------------------------------- AI
+// Page.jsx
+{
+  "en": {
+    "opportunityTitle": "FROM OPPORTUNITY TO MONITORED SYSTEM",
+    "opportunityDesc": "We validate the use case before building, integrate it into real workflows, and keep its behaviour visible after launch.",
+    "opportunity": [
+      {
+        "number": "01",
+        "title": "Discover",
+        "desc": "Identify the workflow, available data and desired outcome."
+      },
+      {
+        "number": "02",
+        "title": "Validate & Architect",
+        "desc": "Test feasibility, sample outputs and review requirements."
+      },
+      {
+        "number": "03",
+        "title": "Build & Integrate",
+        "desc": "Develop the solution and connect it with existing systems."
+      },
+      {
+        "number": "04",
+        "title": "Control & Improve",
+        "desc": "Monitor performance, manage risks and refine the workflow."
+      }
+    ],
+    "practicalAI": [
+      {
+        "title": "Document Intelligence",
+        "desc": "Extract, classify and organise information from documents, forms and reports."
+      },
+      {
+        "title": "Knowledge Assistants",
+        "desc": "Help users find reliable answers from approved business content."
+      },
+      {
+        "title": "Workflow Automation",
+        "desc": "Connect requests, rules, approvals and system actions."
+      },
+      {
+        "title": "AI Product Features",
+        "desc": "Add search, summarisation, recommendations or intelligent assistance to existing products."
+      }
+    ],
+    "footerMessage": {
+      "description": "Have a process that could work smarter?",
+      "buttonText": "Discuss an AI Opportunity"
+    }
+  },
+  "de": {
+    "opportunityTitle": "VON DER CHANCE ZUM ÜBERWACHTEN SYSTEM",
+    "opportunityDesc": "Wir validieren den Anwendungsfall vor der Entwicklung, integrieren ihn in reale Arbeitsabläufe und halten sein Verhalten nach dem Start transparent.",
+    "opportunity": [
+      {
+        "number": "01",
+        "title": "Entdecken",
+        "desc": "Identifizieren Sie den Arbeitsablauf, die verfügbaren Daten und das gewünschte Ergebnis."
+      },
+      {
+        "number": "02",
+        "title": "Validieren & Architektieren",
+        "desc": "Machtbarkeit testen, Beispielergebnisse prüfen und Anforderungen überprüfen."
+      },
+      {
+        "number": "03",
+        "title": "Bauen & Integrieren",
+        "desc": "Entwickeln Sie die Lösung und verbinden Sie sie mit bestehenden Systemen."
+      },
+      {
+        "number": "04",
+        "title": "Steuern & Verbessern",
+        "desc": "Leistung überwachen, Risiken verwalten und den Arbeitsablauf optimieren."
+      }
+    ],
+    "practicalAI": [
+      {
+        "title": "Dokumenten-Intelligenz",
+        "desc": "Extrahieren, klassifizieren und organisieren Sie Informationen aus Dokumenten, Formularen und Berichten."
+      },
+      {
+        "title": "Wissensassistenten",
+        "desc": "Helfen Sie Benutzern, zuverlässige Antworten aus freigegebenen Unternehmensinhalten zu finden."
+      },
+      {
+        "title": "Workflow-Automatisierung",
+        "desc": "Verbinden Sie Anfragen, Regeln, Genehmigungen und Systemaktionen."
+      },
+      {
+        "title": "KI-Produktfunktionen",
+        "desc": "Ergänzen Sie bestehende Produkte um Suche, Zusammenfassung, Empfehlungen oder intelligente Unterstützung."
+      }
+    ],
+    "footerMessage": {
+      "description": "Haben Sie einen Prozess, der intelligenter ablaufen könnte?",
+      "buttonText": "KI-Chance besprechen"
+    }
+  }
+}
+// ConceptAi
+{
+  "english": {
+    "altText": "Concept AI Workflow Demonstration"
+  },
+  "german": {
+    "altText": "Demonstration des Konzept-KI-Workflows"
+  }
+}
+// Hero
+{
+  "english": {
+    "category": "AI & AUTOMATION",
+    "title": "INTELLIGENT SYSTEMS.\nHUMAN DECISIONS.",
+    "description": "Schoq designs AI-assisted products and automated workflows that help teams understand complex information, prepare better decisions and move work forward - with people remaining in control.",
+    "cta": "Discuss an AI Opportunity",
+    "imageAlts": {
+      "main": "AI & Automation Workflow",
+      "fragment1": "Process Flow Indicator",
+      "fragment2": "Review Required Card"
+    }
+  },
+  "german": {
+    "category": "KI & AUTOMATISIERUNG",
+    "title": "INTELLIGENTE SYSTEME.\nMENSCHLICHE ENTSCHEIDUNGEN.",
+    "description": "Schoq entwickelt KI-gestützte Produkte und automatisierte Workflows, die Teams dabei helfen, komplexe Informationen zu verstehen, bessere Entscheidungen vorzubereiten und Arbeitsabläufe voranzutreiben – wobei der Mensch stets die Kontrolle behält.",
+    "cta": "KI-Potenzial besprechen",
+    "imageAlts": {
+      "main": "KI & Automatisierungs-Workflow",
+      "fragment1": "Prozessablauf-Indikator",
+      "fragment2": "Überprüfung-erforderlich-Karte"
+    }
+  }
+}
+// Practical
+{
+  "english": {
+    "title": "Practical AI Transformation",
+    "subtitle": "We bridge the gap between fragmented manual tools and unified automated outcomes.",
+    "manualComplexity": {
+      "header": "MANUAL COMPLEXITY",
+      "items": [
+        "Disconnected Legacy Tools",
+        "Bottlenecks & Sync Delays",
+        "Unstructured Data Silos"
+      ]
+    },
+    "intelligentFlow": {
+      "badge": "RECOMMENDED",
+      "header": "INTELLIGENT FLOW",
+      "items": [
+        "Automated Contextual Extraction",
+        "Heuristic-Led Rule Application",
+        "Integrated Human-in-the-Loop Review"
+      ]
+    }
+  },
+  "german": {
+    "title": "Praktische KI-Transformation",
+    "subtitle": "Wir schließen die Lücke zwischen isolierten manuellen Werkzeugen und einheitlichen automatisierten Ergebnissen.",
+    "manualComplexity": {
+      "header": "MANUELLE KOMPLEXITÄT",
+      "items": [
+        "Getrennte Altsysteme & Tools",
+        "Engpässe & Synchronisationsverzögerungen",
+        "Unstrukturierte Datensilos"
+      ]
+    },
+    "intelligentFlow": {
+      "badge": "EMPFOHLEN",
+      "header": "INTELLIGENTER ABLAUF",
+      "items": [
+        "Automatisierte kontextbezogene Extraktion",
+        "Heuristikgestützte Regelanwendung",
+        "Integrierte Mensch-in-der-Schleife-Überprüfung"
+      ]
+    }
+  }
+}
+
+
+// ----------------------------------------------------------------------------- WEB
+// Page.tsx
+{
+  "en": {
+    "conceptToLaunchTitle": "From Concept To Launch.",
+    "conceptToLaunchDesc": "We provide a complete product delivery stack, from strategy to deployment.",
+    "conceptToLaunch": [
+      {
+        "number": "01",
+        "title": "Discover",
+        "desc": "Defining the MVP scope, technical stack selection, and market fit analysis."
+      },
+      {
+        "number": "02",
+        "title": "Architect",
+        "desc": "High-fidelity UI systems, interactive prototypes, and user journey mapping."
+      },
+      {
+        "number": "03",
+        "title": "Build",
+        "desc": "Native iOS/Android or cross-platform development with a robust backend."
+      },
+      {
+        "number": "04",
+        "title": "Launch & Scale",
+        "desc": "Continuous testing, automated QA, and seamless store deployment."
+      }
+    ],
+    "flexibleEngagement": [
+      {
+        "title": "New Web Platform",
+        "desc": "End-to-End development of a modern digital ecosystem from scratch."
+      },
+      {
+        "title": "Modernization",
+        "desc": "Migrating legacy systems to modern, headless frontend architectures."
+      },
+      {
+        "title": "Team Extension",
+        "desc": "Frontend, backend and product specialists integrated into your existing team."
+      }
+    ],
+    "expertiseItemsTitle": "Everything your web platform may need beyond the interface.",
+    "expertiseItems": [
+      {
+        "id": "custom-software",
+        "firstLine": "CUSTOM",
+        "secondLine": "SOFTWARE"
+      },
+      {
+        "id": "mobile-dev",
+        "firstLine": "Mobile",
+        "secondLine": "Dev"
+      },
+      {
+        "id": "product-design",
+        "firstLine": "PRODUCT",
+        "secondLine": "DESIGN"
+      },
+      {
+        "id": "ai-solutions",
+        "firstLine": "AI",
+        "secondLine": "SOLUTIONS"
+      },
+      {
+        "id": "cloud-engineering",
+        "firstLine": "CLOUD",
+        "secondLine": "ENGINEERING"
+      }
+    ],
+    "footerMessage": {
+      "description": "Have a challenge worth solving? ",
+      "buttonText": "Discuss Your Web Platform"
+    }
+  },
+  "de": {
+    "conceptToLaunchTitle": "Vom Konzept bis zum Launch.",
+    "conceptToLaunchDesc": "Wir bieten ein vollständiges Produktbereitstellungs-Paket, von der Strategie bis zur Bereitstellung.",
+    "conceptToLaunch": [
+      {
+        "number": "01",
+        "title": "Entdecken",
+        "desc": "Definition des MVP-Umfangs, Auswahl des Technologie-Stacks und Analyse der Markttauglichkeit."
+      },
+      {
+        "number": "02",
+        "title": "Architektur",
+        "desc": "High-Fidelity-UI-Systeme, interaktive Prototypen und User-Journey-Mapping."
+      },
+      {
+        "number": "03",
+        "title": "Bauen",
+        "desc": "Native iOS/Android- oder plattformübergreifende Entwicklung mit einem robusten Backend."
+      },
+      {
+        "number": "04",
+        "title": "Starten & Skalieren",
+        "desc": "Kontinuierliches Testen, automatisierte Qualitätssicherung und nahtlose Store-Bereitstellung."
+      }
+    ],
+    "flexibleEngagement": [
+      {
+        "title": "Neue Web-Plattform",
+        "desc": "End-to-End-Entwicklung eines modernen digitalen Ökosystems von Grund auf."
+      },
+      {
+        "title": "Modernisierung",
+        "desc": "Migration von Altsystemen auf moderne, headless Frontend-Architekturen."
+      },
+      {
+        "title": "Team-Erweiterung",
+        "desc": "Frontend-, Backend- und Produktspezialisten, die in Ihr bestehendes Team integriert werden."
+      }
+    ],
+    "expertiseItemsTitle": "Alles, was Ihre Web-Plattform über die Benutzeroberfläche hinaus benötigen könnte.",
+    "expertiseItems": [
+      {
+        "id": "custom-software",
+        "firstLine": "INDIVIDUELLE",
+        "secondLine": "SOFTWARE"
+      },
+      {
+        "id": "mobile-dev",
+        "firstLine": "Mobile",
+        "secondLine": "Entwicklung"
+      },
+      {
+        "id": "product-design",
+        "firstLine": "PRODUKT-",
+        "secondLine": "DESIGN"
+      },
+      {
+        "id": "ai-solutions",
+        "firstLine": "KI-",
+        "secondLine": "LÖSUNGEN"
+      },
+      {
+        "id": "cloud-engineering",
+        "firstLine": "CLOUD-",
+        "secondLine": "ENGINEERING"
+      }
+    ],
+    "footerMessage": {
+      "description": "Haben Sie eine Herausforderung, die es wert ist, gelöst zu werden? ",
+      "buttonText": "Web-Plattform besprechen"
+    }
+  }
+}
+// Hero
+{
+  "english": {
+    "category": "Web Platforms & Development.",
+    "title": "Web Platforms Built To Perform, Adapt And Grow.",
+    "description": "We engineer high-performance web ecosystems that transcend static pages, enabling complex workflows and seamless user experiences at scale.",
+    "cta": "Start a Project",
+    "leftCard": {
+      "title": "Static Page",
+      "subtitle": "Information Only"
+    },
+    "rightCard": {
+      "cms": "CMS",
+      "userAuth": "User Auth",
+      "integrations": "Integrations",
+      "platform": "Platform"
+    }
+  },
+  "german": {
+    "category": "Webplattformen & Entwicklung.",
+    "title": "Webplattformen – Entwickelt für Leistung, Anpassung und Wachstum.",
+    "description": "Wir entwickeln hochleistungsfähige Web-Ökosysteme, die über statische Seiten hinausgehen und fehlerfreie, skalierbare Arbeitsabläufe sowie nahtlose Nutzungserlebnisse ermöglichen.",
+    "cta": "Projekt starten",
+    "leftCard": {
+      "title": "Statische Seite",
+      "subtitle": "Nur Informationen"
+    },
+    "rightCard": {
+      "cms": "CMS",
+      "userAuth": "Benutzerauthentifizierung",
+      "integrations": "Integrationen",
+      "platform": "Plattform"
+    }
+  }
+}
+// One platform
+{
+  "english": {
+    "title": "One Platform. Every Screen.",
+    "subtitle": "One codebase, infinite viewports.",
+    "imageAlts": {
+      "desktop": "Desktop platform viewport",
+      "laptop": "Laptop viewports",
+      "mobile": "Mobile viewport"
+    }
+  },
+  "german": {
+    "title": "Eine Plattform. Jeder Bildschirm.",
+    "subtitle": "Eine Codebasis, unendliche Darstellungsbereiche.",
+    "imageAlts": {
+      "desktop": "Desktop-Plattform-Ansicht",
+      "laptop": "Laptop-Ansichten",
+      "mobile": "Mobile Ansicht"
+    }
+  }
+}
+
+
+// ----------------------------------------------------------------------------- MOBILE
+// page.tsx
+{
+  "en": {
+    "productBlueprintTitle": "Product Blueprint",
+    "productBlueprintTitleDesc": "We provide a complete product delivery stack, from strategy to deployment.",
+    "productBlueprint": [
+      {
+        "number": "01",
+        "title": "Product Direction",
+        "desc": "Defining the MVP scope, technical stack selection, and market fit analysis."
+      },
+      {
+        "number": "02",
+        "title": "Experience Design",
+        "desc": "High-fidelity UI systems, interactive prototypes, and user journey mapping."
+      },
+      {
+        "number": "03",
+        "title": "Engineering",
+        "desc": "Native iOS/Android or cross-platform development with a robust backend."
+      },
+      {
+        "number": "04",
+        "title": "Quality",
+        "desc": "Continuous testing, automated QA, and seamless store deployment."
+      }
+    ],
+    "flexibleEngagement": [
+      {
+        "title": "New Product Build",
+        "desc": "Complete ownership of the mobile product development from zero."
+      },
+      {
+        "title": "Legacy Modernization",
+        "desc": "Re-engineering and enhancing existing mobile applications."
+      },
+      {
+        "title": "Team Extension",
+        "desc": "Dedicated engineers integrated directly into your internal team."
+      }
+    ],
+    "expertiseItemsTitle": "Everything your mobile product may need beyond the app.",
+    "expertiseItems": [
+      {
+        "id": "custom-software",
+        "firstLine": "CUSTOM",
+        "secondLine": "SOFTWARE"
+      },
+      {
+        "id": "product-design",
+        "firstLine": "PRODUCT",
+        "secondLine": "DESIGN"
+      },
+      {
+        "id": "ai-solutions",
+        "firstLine": "AI",
+        "secondLine": "SOLUTIONS"
+      },
+      {
+        "id": "cloud-engineering",
+        "firstLine": "CLOUD",
+        "secondLine": "ENGINEERING"
+      }
+    ],
+    "footerMessage": {
+      "description": "Have a mobile app worth building?",
+      "buttonText": "Start Building a Mobile App"
+    }
+  },
+  "de": {
+    "productBlueprintTitle": "Produkt-Blueprint",
+    "productBlueprintTitleDesc": "Wir bieten ein vollständiges Produktbereitstellungs-Paket, von der Strategie bis zur Bereitstellung.",
+    "productBlueprint": [
+      {
+        "number": "01",
+        "title": "Produktrichtung",
+        "desc": "Definition des MVP-Umfangs, Auswahl des Technologie-Stacks und Analyse der Markttauglichkeit."
+      },
+      {
+        "number": "02",
+        "title": "Erlebnisdesign",
+        "desc": "High-Fidelity-UI-Systeme, interaktive Prototypen und User-Journey-Mapping."
+      },
+      {
+        "number": "03",
+        "title": "Entwicklung",
+        "desc": "Native iOS/Android- oder plattformübergreifende Entwicklung mit einem robusten Backend."
+      },
+      {
+        "number": "04",
+        "title": "Qualität",
+        "desc": "Kontinuierliches Testen, automatisierte Qualitätssicherung und nahtlose Store-Bereitstellung."
+      }
+    ],
+    "flexibleEngagement": [
+      {
+        "title": "Neues Produkt entwickeln",
+        "desc": "Vollständige Übernahme der mobilen Produktentwicklung von Grund auf."
+      },
+      {
+        "title": "Legacy-Modernisierung",
+        "desc": "Neuentwicklung und Optimierung bestehender mobiler Anwendungen."
+      },
+      {
+        "title": "Team-Erweiterung",
+        "desc": "Dedizierte Entwickler, die direkt in Ihr internes Team integriert werden."
+      }
+    ],
+    "expertiseItemsTitle": "Alles, was Ihr mobiles Produkt über die App hinaus benötigen könnte.",
+    "expertiseItems": [
+      {
+        "id": "custom-software",
+        "firstLine": "INDIVIDUELLE",
+        "secondLine": "SOFTWARE"
+      },
+      {
+        "id": "product-design",
+        "firstLine": "PRODUKT-",
+        "secondLine": "DESIGN"
+      },
+      {
+        "id": "ai-solutions",
+        "firstLine": "KI-",
+        "secondLine": "LÖSUNGEN"
+      },
+      {
+        "id": "cloud-engineering",
+        "firstLine": "CLOUD-",
+        "secondLine": "ENGINEERING"
+      }
+    ],
+    "footerMessage": {
+      "description": "Haben Sie eine mobile App, die es wert ist, gebaut zu werden?",
+      "buttonText": "Mobile App entwickeln"
+    }
+  }
+}
+
+// Product Demonstration
+{
+  "english": {
+    "title": "Product Demonstration",
+    "imageAlts": {
+      "mockup": "Product Demonstration Mockup Showcase"
+    }
+  },
+  "german": {
+    "title": "Produkt-Demonstration",
+    "imageAlts": {
+      "mockup": "Produkt-Demonstrations-Mockup-Präsentation"
+    }
+  }
+}
+// Services Hero
+{
+  "english": {
+    "category": "Mobile App Development",
+    "title": "Mobile products people choose to keep using.",
+    "description": "Schoq designs and develops intuitive, scalable mobile applications - from early product strategy and UX to engineering, launch and continuous improvement.",
+    "cta": "Start Building a Mobile App"
+  },
+  "german": {
+    "category": "Mobile App-Entwicklung",
+    "title": "Mobile Produkte, die Menschen gerne dauerhaft nutzen.",
+    "description": "Schoq konzipiert und entwickelt intuitive, skalierbare mobile Anwendungen – von der frühen Produktstrategie und UX bis hin zur Entwicklung, dem Launch und der kontinuierlichen Verbesserung.",
+    "cta": "Mobile App entwickeln"
+  }
+}
+
+// ----------------------------------------------------------------------------- SERVICES LAYOUT
+// Five
+{
+  "english": {
+    "category": "Connected Expertise"
+  },
+  "german": {
+    "category": "Vernetzte Expertise"
+  }
+}
+// THree
+{
+  "english": {
+    "category": "How We Work",
+    "title": "Flexible Engagement"
+  },
+  "german": {
+    "category": "Wie wir arbeiten",
+    "title": "Flexible Zusammenarbeit"
+  }
+}
+// Two
+{
+  "english": {
+    "title": "{mainTitle}",
+    "description": "{mainDesc}"
+  },
+  "german": {
+    "title": "{mainTitle}",
+    "description": "{mainDesc}"
+  }
+}
